@@ -24,10 +24,10 @@
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
+          <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="{{ url('category') }}">Category</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

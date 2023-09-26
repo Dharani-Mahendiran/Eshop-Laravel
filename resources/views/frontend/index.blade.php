@@ -10,7 +10,8 @@
 
 <div class="py-5">
   <div class="container">
-    <div class="row">
+
+  <div class="row">
     <h2 class='text-center  ui'>Featured Products</h2>
       <div class="featured-carousel owl-carousel owl-theme mt-3">
           @foreach($featured_products as $product)
@@ -28,7 +29,29 @@
           @endforeach
     </div>
 
+  </div>
+
+  <div class="row mt-5">
+    <h2 class='text-center  ui'>Popular Categories</h2>
+      <div class="featured-carousel owl-carousel owl-theme mt-3">
+          @foreach($popular_categories as $category)
+          <div class="item">
+            <div class="card">
+              <i class='card-img'><img class='' src="{{ asset('uploads/category/'.$category->image) }}" alt="Category Image"></i>
+              
+              <div class="card-body">
+                <h5>{{ $category->name }}</h5>
+                <p>{{ $category->description }}</p>
+              </div>
+            </div>
+          </div>
+          @endforeach
     </div>
+
+  </div>
+
+
+
   </div>
 </div>
 

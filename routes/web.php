@@ -32,7 +32,8 @@ use App\Http\Controllers\Frontend\FrontEndController;
 Route::prefix('/')->group(function(){
 
     Route::controller(FrontEndController::class)->group(function(){ 
-        Route::get(' ', 'index');
+        Route::get('/', 'index');
+        Route::get('/category', 'category');
     });
 });
 
