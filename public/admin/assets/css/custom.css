@@ -1,0 +1,259 @@
+.sidebar .nav .nav-item .collapse,
+.collapsing{
+    transition-delay: 0s;
+    transform-style: preserve-3d;
+}
+
+/* create category css */
+/* CSS for positioning the close button on top of the image */
+.image-container {
+  position: relative;
+  display: none; /* Hide the image container by default */
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #dc3545;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: none; /* Hide the close button by default */
+}
+
+.image-container{
+  margin-top:10px;
+}
+
+#selectedImage,
+.img-exist{
+  width: 100px;
+  height: 100px;
+  border: 2px solid #9b9b9b;
+  padding: 10px;
+}
+
+/* index category css */
+
+.action-wrap{
+  display: flex;
+  align-items: center;
+}
+
+.action-wrap i {
+  margin-right: 5px;
+}
+.action-wrap i:before{
+  font-size: 25px;
+}
+
+.paginate-wrap{
+    margin: 15px 0px;
+    display: flex;
+    justify-content: end;
+}
+
+/* edit category css */
+.flex-col{
+  display: flex;
+  flex-direction: column;
+  margin-right: 15px;
+}
+
+.d-flex.edit-col .image-container{
+  margin:0;
+}
+
+.d-flex.edit-col{
+  margin-top: 15px;
+}
+.d-flex.edit-col img{
+  margin-top: 20px;
+}
+
+.d-flex.edit-col .close-button{
+  top: 20px;
+}
+
+.font-italic{
+  font-style: italic;
+}
+
+
+
+/* custm sidebar css */
+
+.grid-margin .btn.btn-primary.mt-2.mt-xl-0{
+  color:#fff;
+}
+
+.sidebar .nav .nav-item.active > .nav-link i, 
+.sidebar .nav .nav-item.active > .nav-link .menu-title, 
+.sidebar .nav .nav-item.active > .nav-link .menu-arrow,
+.sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link {
+  color: unset;
+}
+
+/* .sidebar .nav .nav-item.active > .nav-link, */
+
+.sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link,
+.sidebar .nav .nav-item.li-active{
+  background-color: #4d83ff;
+  color:#fff;
+}
+
+.sidebar .nav .nav-item.li-active a{
+  color:#fff;
+}
+
+.sidebar .nav.sub-menu{
+  background:#fff;
+}
+
+.sidebar .nav.sub-menu .nav-item::before{
+  z-index: 1;
+}
+
+.sidebar .nav.sub-menu .nav-item.li-active .nav-link.active{
+  color: #4d83ff;
+  background: #fff;
+}
+
+.sidebar .nav .nav-item .nav-link i.menu-arrow{
+  color:unset;
+}
+.sidebar .nav .nav-item,
+.sidebar .nav .nav-item .nav-link {
+  -webkit-transition-duration:unset;
+  -moz-transition-duration:unset;
+  -o-transition-duration: unset;
+  transition-duration: unset; 
+  transition-property: unset;
+  -webkit-transition-property: unset;
+}
+
+.sidebar .nav .nav-item .nav-link i.menu-arrow:before{
+  -webkit-transition:unset;
+  transition:unset;
+}
+
+.form-select,
+.form-control{
+  height: 40px;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+/* two factor ui */
+.two-factor{
+  overflow: hidden;
+  background: #003254;
+}
+.two-factor .card-group {
+  margin: auto;
+  max-width: 50%;
+  margin-top: 50px;
+}
+.two-factor .card {
+  background-color: #fff;
+  border: 1px solid #17a2b8; 
+  border-radius: 10px; 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+  transition: box-shadow 0.3s ease; 
+}
+.two-factor .card:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); 
+}
+.two-factor .card-body {
+  padding: 20px; 
+}
+.two-factor .card-title {
+  font-size: 24px; 
+  color: #000; 
+}
+.two-factor .card-text {
+  color: #000; 
+}
+.two-factor.alert-info {
+  background-color: #17a2b8;
+  color: #fff; 
+}
+.two-factor .form-control {
+  border: 1px solid #17a2b8; 
+}
+.two-factor .btn-primary {
+  background-color: #17a2b8;
+  border: none;
+  color: #fff; 
+}
+.two-factor .btn-primary:hover {
+  background-color: #0a6e87; 
+}
+.two-factor .btn-danger {
+  background-color: #dc3545; 
+  border: none; 
+  color: #fff;
+}
+.two-factor .btn-danger:hover {
+  background-color: #a71d2a;
+}
+.two-factor .input-group {
+  margin-bottom: 20px;
+}
+.two-factor .is-invalid {
+  border-color: #dc3545; 
+}
+
+.two-factor .footer{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.two-factor .footer button{
+  width: 100px;
+}
+
+.two-factor .input-group-text{
+  height: 40px;
+  border-radius: 0;
+}
+.login_form .card-header{
+  display: flex;
+  justify-content: space-between;
+}
+/* end of two factor ui */
+/* end of two factor ui */
+
+@media screen and (min-width:768px) and (max-width:992px){
+  .two-factor .card-group {
+    max-width: 80%;
+  }
+}
+
+@media screen and (max-width:767.98px){
+  .two-factor .card-group {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .two-factor .footer{
+    justify-content:center;
+  }
+
+  .two-factor .footer button:first-child {
+    margin-right: 5px;
+  }
+
+  .two-factor img{
+    width: 100px;
+  }
+  .two-factor .card-group {
+    margin-top: 35px;
+  }
+}
