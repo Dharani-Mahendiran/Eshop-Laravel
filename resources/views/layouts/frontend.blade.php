@@ -8,12 +8,18 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
+    <body class="@yield('body_class')">
 
-  <!-- Bootstrap:css -->
-  
+  <!-- Bootstrap5:css -->
   <link href="{{ asset('frontend\assets\css\bootstrap5.min.css') }}" rel="stylesheet">
+  {{-- owl carousel css--}}
+  <link href="{{ asset('frontend\assets\css\owl.carousel.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('frontend\assets\css\owl.theme.default.min.css') }}" rel="stylesheet">
+  {{-- custom css --}}
   <link href="{{ asset('frontend\assets\css\custom.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend\assets\css\responsive.css') }}" rel="stylesheet">
+
+
 </head>
 <body>
    
@@ -31,8 +37,12 @@
 
 
     <!-- Scripts -->
-    <script src="{{ asset('frontend\assets\js\bootstrap5.bundle.min.js') }}" ></script>
     <script src="{{ asset('frontend\assets\js\jquery-3.7.0.min.js') }}" ></script>
+    <script src="{{ asset('frontend\assets\js\bootstrap5.bundle.min.js') }}" ></script>
+
+    {{-- owl carousel js--}}
+    <script src="{{ asset('frontend\assets\js\owl.carousel.min.js') }}" ></script>
+    {{-- custom js--}}
     <script src="{{ asset('frontend\assets\js\custom.js') }}" ></script>
 
     {{-- sweet alert cdn --}}
@@ -62,6 +72,8 @@
         });
     </script>
     @endif
+
+    @yield('scripts')
 
 </body>
 </html>
