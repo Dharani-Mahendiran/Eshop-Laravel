@@ -15,10 +15,12 @@
   {{-- owl carousel css--}}
   <link href="{{ asset('frontend\assets\css\owl.carousel.min.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend\assets\css\owl.theme.default.min.css') }}" rel="stylesheet">
+  {{-- fontawesome css --}}
+  <link href="{{ asset('admin\fontawesome-free\css\all.css') }}" rel="stylesheet">
   {{-- custom css --}}
   <link href="{{ asset('frontend\assets\css\custom.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend\assets\css\responsive.css') }}" rel="stylesheet">
-
+ 
 
 </head>
 <body>
@@ -42,6 +44,8 @@
 
     {{-- owl carousel js--}}
     <script src="{{ asset('frontend\assets\js\owl.carousel.min.js') }}" ></script>
+    {{-- fontawesome js--}}
+    <script src="{{ asset('admin\fontawesome-free\css\all.js') }}"></script>
     {{-- custom js--}}
     <script src="{{ asset('frontend\assets\js\custom.js') }}" ></script>
 

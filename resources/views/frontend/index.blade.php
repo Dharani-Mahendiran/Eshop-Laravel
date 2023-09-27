@@ -32,9 +32,10 @@
   </div>
 
   <div class="row mt-5">
-    <h2 class='text-center  ui'>Popular Categories</h2>
+    <h2 class='text-center ui'>Popular Categories</h2>
       <div class="featured-carousel owl-carousel owl-theme mt-3">
           @foreach($popular_categories as $category)
+          <a href="{{ url('view-category/'. $category->slug) }}" class='text-decoration-none'>
           <div class="item">
             <div class="card">
               <i class='card-img'><img class='' src="{{ asset('uploads/category/'.$category->image) }}" alt="Category Image"></i>
@@ -45,6 +46,7 @@
               </div>
             </div>
           </div>
+          </a>
           @endforeach
     </div>
 

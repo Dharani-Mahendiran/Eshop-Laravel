@@ -34,6 +34,8 @@ Route::prefix('/')->group(function(){
     Route::controller(FrontEndController::class)->group(function(){ 
         Route::get('/', 'index');
         Route::get('/category', 'category');
+        Route::get('view-category/{slug}', 'viewcategory');
+        Route::get('category/{cate_slug}/{prod_slug}', 'viewproduct');
     });
 });
 
