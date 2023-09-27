@@ -19,13 +19,15 @@
     <div class="col-md-8 content">
         <div class='product-box'>
             <h4>{{ $product->name }}</h4>
-            @if($product->trending == 1)
+           
             <h6 class="">
+              @if($product->trending == 1)
                 <span class='trending'>Trending</span>
+              @endif
                 <i class='fa fa-heart' id='commonlist'></i>
                 <i class='fa fa-heart text-danger' id='wishlist'></i>
             </h6>
-            @endif
+          
         </div>
 
 
@@ -40,8 +42,9 @@
         </div>
 
 
-        
-    
+
+        @if($product->quantity > 0)
+        <span class='stock-in'>In Stock</span>
         <div class="cart">
             <div class="add-quantity">
                 <button class="minus" aria-label="Decrease">&minus;</button>
@@ -59,6 +62,16 @@
             </button>
         </form>
         </div>
+        @else
+        <div class='notify'>
+        <span class='stock-out'>Oops! This product is currently out of stock</span>
+        <i class='fa fa-bell ms-2' id='notify'></i>
+        <i class='fa fa-bell ms-2' id='notified'></i>
+        </div>
+        @endif
+
+
+
     </div>
                        
 </div>               
@@ -77,6 +90,19 @@
     wishlistIcon.addEventListener('click', () => {
         wishlistIcon.style.display = 'none';
         commonlistIcon.style.display = 'inline-block';
+    });
+
+// Notify icon toggle
+const notifyIcon = document.getElementById('notify');
+    const notifiedIcon = document.getElementById('notified');
+    notifyIcon .addEventListener('click', () => {
+      notifyIcon .style.display = 'none';
+      notifiedIcon .style.display = 'inline-block';
+    });
+
+    notifiedIcon .addEventListener('click', () => {
+      notifiedIcon .style.display = 'none';
+      notifyIcon .style.display = 'inline-block';
     });
 
 // add quantity
