@@ -17,10 +17,28 @@ class CartController extends Controller
          if(Auth::check()){
             $product_check = Product::where('id', $product_id)->first();
             if($product_check){
+                $existingCartItem = Cart::where('product_id', $product_id)
+                ->where('user_id', Auth::id())
+                ->where('product_qty', '=', $product_qty)
+                ->first();
+
+                $updateCartItem = Cart::where('product_id', $product_id)
+                ->where('user_id', Auth::id())
+                ->where('product_qty', '!=', $product_qty)
+                ->first();
 
                 //  If there is already a product in the card with same id's
-                if(Cart::where('product_id', $product_id)->where('user_id',Auth::id())->exists()){
-                return response()->json(['status' => $product_check->name.' already added to cart']);
+                if($existingCartItem){
+                    return response()->json(['status' => $product_check->name.' already added to cart']);
+                }
+                elseif($updateCartItem) {
+                    $cartItem = Cart::find($updateCartItem->id);
+                    if ($cartItem) {
+                        // Update the quantity of the existing cart item
+                        $cartItem->product_qty = $product_qty;
+                        $cartItem->update();
+                        return response()->json(['status' => $product_check->name . ' Quantity Updated']);
+                    }
                 }
                 else{
                 // newly added products in the cart
