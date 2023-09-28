@@ -5,6 +5,10 @@
 @section('body_class', 'home-index product-view')
 @section('content')
 
+<div class="breadcrumb">
+  <h4>Collection/{{ $product->category->name }}/{{ $product->name }}</h4>
+</div>
+
 
 <div class="section-bg">
 <div class="container-fluid">
@@ -48,7 +52,7 @@
         <div class="cart">
             <div class="add-quantity">
                 <button class="minus" aria-label="Decrease">&minus;</button>
-                <input type="number" class="input-box" value="1" min="1" max="10">
+                <input type="number" name='quantity' class="qty-input" value="1">
                 <button class="plus" aria-label="Increase">&plus;</button>
             </div>
 
@@ -78,86 +82,85 @@
 </div>
 </div>
 
- <script>
-// Wishlist icon toggle
-    const commonlistIcon = document.getElementById('commonlist');
-    const wishlistIcon = document.getElementById('wishlist');
-    commonlistIcon.addEventListener('click', () => {
-        commonlistIcon.style.display = 'none';
-        wishlistIcon.style.display = 'inline-block';
-    });
+@section('scripts')
+<script>
 
-    wishlistIcon.addEventListener('click', () => {
-        wishlistIcon.style.display = 'none';
-        commonlistIcon.style.display = 'inline-block';
-    });
+// add and decrease quantity
+$(document).ready(function () {
+  $('.plus').click(function (e) { 
+    e.preventDefault();
+
+    var inc_val = $('.qty-input').val();
+    var value = parseInt(inc_val, 10);
+
+    // Use isNaN to check if it's Not A Number
+    value = isNaN(value) ? 0 : value;
+
+    if (value < 10) {
+      value++;
+      $('.qty-input').val(value);
+    }
+  });
+
+
+  $('.minus').click(function (e) { 
+    e.preventDefault();
+
+    var dec_val = $('.qty-input').val();
+    var value = parseInt(dec_val, 10);
+
+    value = isNaN(value) ? 0 : value;
+
+    if (value > 1) {
+      value--;
+      $('.qty-input').val(value);
+    }
+  });
+
+    // if the user type more than 10, enforce the inpiut val to max 10
+    $('.qty-input').on('input', function () {
+    var value = parseInt($(this).val(), 10);
+
+    if (isNaN(value) || value < 1) {
+      $(this).val(1);
+    } else if (value > 10) {
+      $(this).val(10);
+    }
+  });
+
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+// Wishlist icon toggle
+  const commonlistIcon = document.getElementById('commonlist');
+  const wishlistIcon = document.getElementById('wishlist');
+  commonlistIcon.addEventListener('click', () => {
+      commonlistIcon.style.display = 'none';
+      wishlistIcon.style.display = 'inline-block';
+  });
+
+  wishlistIcon.addEventListener('click', () => {
+      wishlistIcon.style.display = 'none';
+      commonlistIcon.style.display = 'inline-block';
+  });
 
 // Notify icon toggle
-const notifyIcon = document.getElementById('notify');
-    const notifiedIcon = document.getElementById('notified');
-    notifyIcon .addEventListener('click', () => {
-      notifyIcon .style.display = 'none';
-      notifiedIcon .style.display = 'inline-block';
-    });
+  const notifyIcon = document.getElementById('notify');
+  const notifiedIcon = document.getElementById('notified');
+  notifyIcon .addEventListener('click', () => {
+    notifyIcon .style.display = 'none';
+    notifiedIcon .style.display = 'inline-block';
+  });
 
-    notifiedIcon .addEventListener('click', () => {
-      notifiedIcon .style.display = 'none';
-      notifyIcon .style.display = 'inline-block';
-    });
+  notifiedIcon .addEventListener('click', () => {
+    notifiedIcon .style.display = 'none';
+    notifyIcon .style.display = 'inline-block';
+  });
 
-// add quantity
-(function () {
-  const quantityContainer = document.querySelector(".add-quantity");
-  const minusBtn = quantityContainer.querySelector(".minus");
-  const plusBtn = quantityContainer.querySelector(".plus");
-  const inputBox = quantityContainer.querySelector(".input-box");
-
-  updateButtonStates();
-
-  quantityContainer.addEventListener("click", handleButtonClick);
-  inputBox.addEventListener("input", handleQuantityChange);
-
-  function updateButtonStates() {
-    const value = parseInt(inputBox.value);
-    minusBtn.disabled = value <= 1;
-    plusBtn.disabled = value >= parseInt(inputBox.max);
-  }
-
-  function handleButtonClick(event) {
-    if (event.target.classList.contains("minus")) {
-      decreaseValue();
-    } else if (event.target.classList.contains("plus")) {
-      increaseValue();
-    }
-  }
-
-  function decreaseValue() {
-    let value = parseInt(inputBox.value);
-    value = isNaN(value) ? 1 : Math.max(value - 1, 1);
-    inputBox.value = value;
-    updateButtonStates();
-    handleQuantityChange();
-  }
-
-  function increaseValue() {
-    let value = parseInt(inputBox.value);
-    value = isNaN(value) ? 1 : Math.min(value + 1, parseInt(inputBox.max));
-    inputBox.value = value;
-    updateButtonStates();
-    handleQuantityChange();
-  }
-
-  function handleQuantityChange() {
-    let value = parseInt(inputBox.value);
-    value = isNaN(value) ? 1 : value;
-
-    // Execute your code here based on the updated quantity value
-    console.log("Quantity changed:", value);
-  }
-})();
+});
 
 
 </script>
-
+@endsection
 
 @endsection

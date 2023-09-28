@@ -81,6 +81,29 @@ img.w-100{
     padding: 1rem;
     margin-bottom:1.5rem;
 }
+
+
+.home-index .category.card{
+    min-height: 350px;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+/* scrollbar */
+.card::-webkit-scrollbar {
+    width: 5px;
+    background-color: #fff;
+}
+.card::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+.card::-webkit-scrollbar-thumb {
+    background-color: #fff;
+}
+
+
+
+
 /* product view ui */
    
 .product-view .section-bg{
@@ -195,7 +218,7 @@ img.w-100{
   background-color: #198754;
 }
 
-.product-view .input-box {
+.product-view .qty-input {
 width: 70px;
 border: 1px solid #d4d4d4;
 border-radius: 20px;
@@ -207,13 +230,13 @@ outline: none;
 }
 
 /* Hide the number input spin buttons */
-.product-view .input-box::-webkit-inner-spin-button,
-.input-box::-webkit-outer-spin-button {
+.product-view .qty-input::-webkit-inner-spin-button,
+.qty-input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.product-view .input-box[type="number"] {
+.product-view .qty-input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -273,50 +296,149 @@ outline: none;
     font-size: 25px;
     color:#198754;
 }
+
+.breadcrumb{
+    margin: 15px;
+}
+.breadcrumb h4{
+    margin: 0;
+    font-size: 1.10rem;
+    font-style: italic;
+    letter-spacing: 3px;
+}
+.bg-ui{
+    background-color: #0A2640;
+}
+.text-ui{
+    color:#0A2640;
+}
 /* end of product view ui */
 
-
-
-
-
-
-
-
-/* responsive ui */
-@media (max-width:1024.98px){
-    .product-view .row.ui{
-        margin:15px;
-    }
-    .product-view .container-fluid {
-        padding: 5rem 3rem;
-    }
+/* flip-card ui */
+.flip-card {
+background-color: transparent;
+width: 100%;
+height: 320px;
+perspective: 1000px; 
+}
+.flip-card img{
+    width: 300px;
+    height: 300px;
 }
 
-@media (max-width:767.98px){
-    .product-view .container-fluid {
-        padding: 10px;
-    }
-    .product-view .product-i img{
-        height: 100%;
-    }
+.flip-card-inner {
+position: relative;
+width: 100%;
+height: 100%;
+text-align: center;
+transition: transform 0.8s;
+transform-style: preserve-3d;
+}
 
-    .product-view .feature-box h5{
-        font-size: 18px;
-    }
-    .product-view .feature-box p{
-        font-size: 14px;
-    }
+.flip-card:hover .flip-card-inner {
+transform: rotateY(180deg);
+}
 
-    .product-view .cart{
-        display: block;
-    }
-    .product-view .col-md-8.content .cart .add-quantity {
-        margin: 20px 0px;
-    }
-    .product-view .col-md-8.content .cart form{
-        display: flex;
-    }
+.flip-card-front, .flip-card-back {
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+}
+
+.flip-card-front {
+background-color: #fff;
+color: black;
+border-radius: 5px;
+}
+
+.flip-card-back {
+background-color: #0A2640;
+color: white;
+transform: rotateY(180deg);
+border-radius: 5px;
+display: flex;
+align-items: center;
+justify-content:center;
+}
+
+.flip-card-back p{
+    word-spacing: 0px;
+    hyphens: auto;
+}
+
+.home-index .flip-card i.card-img{
+   width: auto;
+   height: auto;
+   border-radius: 5px;
+}
+.flip-card h4{
+    text-align: left;
+    padding: 10px;
+    color: #0A2640;
+}
+.flip-card-front p{
+    padding: 5px 10px;
+    margin: 0px 10px;
+}
+.flip-card-front .p-btn{
+    background: #65E4A3;
+    border: 2px solid #65E4A3;
+    border-radius: 56px;
+    color: #0A2640;
+    width: 120px;
+    height: auto;
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 28px;
+}
+
+/* responsive ui */
+
+@media (max-width:1281.98px){
+
     .product-view .buy-btn, .product-view .cart-btn{
         width: 100px;
     }
-}
+    }
+    
+    @media (max-width:1024.98px){
+        .product-view .row.ui{
+            margin:15px;
+        }
+        .product-view .container-fluid {
+            padding: 5rem 3rem;
+        }
+    }
+    
+    @media (max-width:767.98px){
+        .product-view .container-fluid {
+            padding: 10px;
+        }
+        .product-view .product-i img{
+            height: 100%;
+        }
+    
+        .product-view .feature-box h5{
+            font-size: 18px;
+        }
+        .product-view .feature-box p{
+            font-size: 14px;
+        }
+        .product-view .cart{
+            display: block;
+        }
+        .product-view .col-md-8.content .cart .add-quantity {
+            margin: 20px 0px;
+        }
+        .product-view .col-md-8.content .cart form{
+            display: flex;
+        }
+        .breadcrumb h4 {
+            font-size: 1rem;
+            letter-spacing: 0px;
+        }
+    }
+    
+    

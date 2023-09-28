@@ -5,12 +5,14 @@
 @section('body_class', 'home-index')
 @section('content')
 
+<div class="breadcrumb">
+  <h4>Collection/{{ $category->name }}</h4>
+</div>
 
-<div class="py-5">
+<div class="py-5 bg-ui">
     <div class="container">
-  
+
     <div class="row">
-      <h2 class='text-center  ui'>{{ $category->name }}</h2>
       @if(count($products)>0)
             @foreach($products as $product)
             <div class="col-md-3 mb-3">
