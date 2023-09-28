@@ -10,7 +10,7 @@
 </div>
 
 
-<div class="section-bg">
+<div class="section-bg productData">
 <div class="container-fluid">
 <div class="row ui">
 
@@ -61,7 +61,8 @@
                 <i class="fa fa-shopping-cart"></i> Buy Now
             </button>
 
-            <button class="btn cart-btn" tabindex="0">
+            <input type="hidden" value='{{ $product->id }}' class='product_id'>
+            <button class="btn cart-btn addToCartBtn" tabindex="0">
                 <i class="fa fa-shopping-cart"></i> Add To Cart
             </button>
         </form>
@@ -85,8 +86,42 @@
 @section('scripts')
 <script>
 
+
 // add and decrease quantity
 $(document).ready(function () {
+
+// add to cart ajax jquery
+$('.addToCartBtn').click(function (e) { 
+  e.preventDefault();
+  
+  var product_id = $(this).closest('.productData').find('.product_id').val();
+  var product_qty =  $(this).closest('.productData').find('.qty-input').val();
+
+  // console.log('productId=' + product_id + ' productQty=' + product_qty);
+
+
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+
+  // on clicking on addToCart, add details to the cart table
+  $.ajax({
+    method: "POST",
+    url: "/add-to-cart",
+    data:{
+      'product_id' : product_id,
+      'product_qty' : product_qty,
+    },
+    success: function (response) {
+      swal(response.status);
+    }
+  });
+
+});
+
+
   $('.plus').click(function (e) { 
     e.preventDefault();
 
@@ -101,6 +136,7 @@ $(document).ready(function () {
       $('.qty-input').val(value);
     }
   });
+
 
 
   $('.minus').click(function (e) { 
@@ -127,6 +163,7 @@ $(document).ready(function () {
       $(this).val(10);
     }
   });
+
 
 });
 

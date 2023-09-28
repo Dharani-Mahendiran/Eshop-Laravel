@@ -3,9 +3,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\TwoFactorController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\FrontEndController;
 
@@ -33,10 +34,16 @@ Route::prefix('/')->group(function(){
 
     Route::controller(FrontEndController::class)->group(function(){ 
         Route::get('/', 'index');
-        Route::get('/category', 'category');
+        Route::get('category', 'category');
         Route::get('view-category/{slug}', 'viewcategory');
         Route::get('category/{cate_slug}/{prod_slug}', 'viewproduct');
     });
+
+    // Add-To-Cart routes
+    Route::controller(CartController::class)->group(function(){
+        Route::post('add-to-cart', 'addProduct');
+    });
+
 });
 
 
@@ -72,6 +79,6 @@ Route::prefix('admin')->middleware('auth', 'twofactor', 'isAdmin')->group(functi
         Route::get('/product/del-product/{product}','destroy');
     });
 
-    
+
 });
 
