@@ -19,8 +19,8 @@ class Cart extends Model
     ];
 
 
-    public function carts() { 
-        return $this->hasMany(Product::class, 'product_id', 'id')->hasMany(User::class, 'user_id', 'id');
+    public function product() { 
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
     
 

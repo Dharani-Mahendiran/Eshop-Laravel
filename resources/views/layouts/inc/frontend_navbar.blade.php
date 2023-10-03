@@ -44,12 +44,16 @@
       </ul>
 
 
-
-      <div class="d-flex align-items-center">
-      <form class="d-flex align-items-center">
+      <form class="d-flex align-items-center d-none">
         <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+
+      <div class="d-flex align-items-center">
+
+    <a href="{{ url('cart') }}">
+      <i class="fa fa-shopping-cart"></i>
+    </a>
 
       @if (Route::has('login'))
       <div class="d-flex nav-end">

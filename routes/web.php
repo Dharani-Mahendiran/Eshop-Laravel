@@ -44,6 +44,14 @@ Route::prefix('/')->group(function(){
         Route::post('add-to-cart', 'addProduct');
     });
 
+    Route::middleware(['auth'])->group(function () {
+        Route::controller(CartController::class)->group(function(){
+            Route::get('cart', 'viewCart');
+            Route::post('delete-cartItem', 'deleteProduct');
+        });
+    });
+    
+
 });
 
 
