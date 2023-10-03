@@ -10,7 +10,7 @@
     <h4>Home/Cart</h4>
 </div>
 
-<div class="container mt-5">
+<div class="container">
     
 
 <div class="row">
@@ -54,10 +54,10 @@
             <span>Remove Item</span>
         </i>
   
-        <i class='fa fa-heart cursor-pointer' id='commonlist' title='Add to Wish list'>
+        <i class='fa fa-heart cursor-pointer commonlist' title='Add to Wish list'>
             <span>Add to Wish list</span>
         </i>
-        <i class='fa fa-heart text-danger cursor-pointer' id='wishlist' title='Remove from wish list'>
+        <i class='fa fa-heart text-danger cursor-pointer wishlist' title='Remove from wish list'>
             <span>Remove from wish list</span>
         </i>
 

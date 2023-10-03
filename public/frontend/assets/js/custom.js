@@ -80,30 +80,43 @@ $('.addToCartBtn').click(function (e) {
 
 document.addEventListener('DOMContentLoaded', function () {
 // Wishlist icon toggle
-  const commonlistIcon = document.getElementById('commonlist');
-  const wishlistIcon = document.getElementById('wishlist');
-  commonlistIcon.addEventListener('click', () => {
-      commonlistIcon.style.display = 'none';
-      wishlistIcon.style.display = 'inline-block';
-  });
+const commonlistIcons = document.querySelectorAll('.commonlist');
+const wishlistIcons = document.querySelectorAll('.wishlist');
 
-  wishlistIcon.addEventListener('click', () => {
-      wishlistIcon.style.display = 'none';
-      commonlistIcon.style.display = 'inline-block';
+commonlistIcons.forEach((commonlistIcon, index) => {
+  commonlistIcon.addEventListener('click', () => {
+    commonlistIcon.style.display = 'none';
+    wishlistIcons[index].style.display = 'inline-block';
   });
+});
+
+wishlistIcons.forEach((wishlistIcon, index) => {
+  wishlistIcon.addEventListener('click', () => {
+    wishlistIcon.style.display = 'none';
+    commonlistIcons[index].style.display = 'inline-block';
+  });
+});
+
 
 // Notify icon toggle
-  const notifyIcon = document.getElementById('notify');
-  const notifiedIcon = document.getElementById('notified');
-  notifyIcon .addEventListener('click', () => {
-    notifyIcon .style.display = 'none';
-    notifiedIcon .style.display = 'inline-block';
-  });
+const notifyIcons = document.querySelectorAll(".notify-bell");
+const notifiedIcons = document.querySelectorAll(".notified");
 
-  notifiedIcon .addEventListener('click', () => {
-    notifiedIcon .style.display = 'none';
-    notifyIcon .style.display = 'inline-block';
+notifyIcons.forEach((notifyIcon, index) => {
+  notifyIcon.addEventListener("click", function() {
+    notifyIcon.style.display = "none";
+    notifiedIcons[index].style.display = "inline-block";
   });
+});
+
+notifiedIcons.forEach((notifiedIcon, index) => {
+  notifiedIcon.addEventListener("click", function() {
+    notifyIcons[index].style.display = "inline-block"; 
+    notifiedIcon.style.display = "none";
+  });
+});
+
+
 
 });
 

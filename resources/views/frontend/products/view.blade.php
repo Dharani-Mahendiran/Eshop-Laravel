@@ -28,8 +28,8 @@
               @if($product->trending == 1)
                 <span class='trending'>Trending</span>
               @endif
-              <i class='fa fa-heart' id='commonlist' title='Add to Wish list'></i>
-              <i class='fa fa-heart text-danger' id='wishlist' title='Remove from wish list'></i>
+              <i class='fa fa-heart commonlist cursor-pointer' title='Add to Wish list'></i>
+              <i class='fa fa-heart text-danger wishlist cursor-pointer' title='Remove from wish list'></i>
             </h6>
           
         </div>
@@ -70,8 +70,8 @@
         @else
         <div class='notify'>
         <span class='stock-out'>Oops! This product is currently out of stock</span>
-        <i class='fa fa-bell ms-2' id='notify' title='Notify product'></i>
-        <i class='fa fa-bell ms-2' id='notified' title='Remove from notify'></i>
+        <i class='fa fa-bell ms-2 notify-bell cursor-pointer' title='Notify product'></i>
+        <i class='fa fa-bell ms-2 notified cursor-pointer' title='Remove from notify'></i>
         </div>
         @endif
 
