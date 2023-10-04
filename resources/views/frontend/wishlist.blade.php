@@ -54,7 +54,7 @@
                     </i>
                 </a>
                 <input type="hidden" value='{{ $item->product->id }}' class='product_id'>
-                <i class='fa fa-heart cursor-pointer wishlist remove-btn' title='Remove from wish list'>
+                <i class='fa fa-heart cursor-pointer wishlistBtn remove-btn' title='Remove from wish list'>
                     <span>Remove</span>
                 </i>
             </div>

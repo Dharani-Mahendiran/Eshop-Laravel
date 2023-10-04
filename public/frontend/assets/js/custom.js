@@ -126,7 +126,7 @@ $('.delCartItem').click(function (e) {
       },
       success: function (response) {
         swal("", response.status, "success");
-        window.location.reload();
+        setTimeout(function() {window.location.reload();}, 1000);
       }
     });
   } else {
@@ -178,3 +178,30 @@ $('.commonlist, .wishlist').click(function(e) {
   });
 });
 
+$('.wishlistBtn').click(function(e) {
+  e.preventDefault();
+
+  var product_id = $(this).closest('.productData').find('.product_id').val();
+  var confirmDelete = confirm('Remove from wish list?');
+  if (confirmDelete) {
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+  $.ajax({
+      method: "POST",
+      url: "/delete-wishlist",
+      data: {
+          'product_id': product_id,
+      },
+  success: function (response) {
+        swal("", response.status, "success");
+        setTimeout(function() {window.location.reload();}, 1000);
+      }
+    });
+  } else {
+    
+  }
+});
