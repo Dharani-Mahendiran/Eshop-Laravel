@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TwoFactorController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\FrontEndController;
+use App\Http\Controllers\Frontend\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +51,16 @@ Route::prefix('/')->group(function(){
             Route::get('cart', 'viewCart');
             Route::post('delete-cartItem', 'deleteProduct');
         });
+
+
+        Route::controller(WishlistController::class)->group(function(){
+            Route::post('add-to-wishlist', 'addProduct');
+            Route::get('wishlist', 'viewWishlist');
+            Route::post('delete-wishlist', 'deleteProduct');
+        });
+
+
+
     });
     
 

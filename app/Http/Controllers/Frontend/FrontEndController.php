@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class FrontEndController extends Controller
 {
@@ -44,9 +46,9 @@ class FrontEndController extends Controller
 
             if(Product::where('slug', $prod_slug)->exists()){
 
-                $product =Product::where('slug', $prod_slug)->first();
-
-                return view('frontend.products.view',compact('product'));
+                $product = Product::where('slug', $prod_slug)->first();
+                $wishlist = Wishlist::all();
+                return view('frontend.products.view',compact('product', 'wishlist'));
             }
             else{
                 return redirect('view-category/'.$cate_slug)->with('error','No product Found.');

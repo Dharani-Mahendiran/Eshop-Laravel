@@ -20,7 +20,7 @@
 <div class="col-md-8">
 <div class="card p-0">
     <div class="card-header">
-        <h5>Cart Items<span> {{ count($cartItems) }}</span></h5>
+        <h5>Cart Items<span> ({{ count($cartItems) }}) </span></h5>
     </div>
 
     @foreach($cartItems as $item)

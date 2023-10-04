@@ -28,8 +28,13 @@
               @if($product->trending == 1)
                 <span class='trending'>Trending</span>
               @endif
-              <i class='fa fa-heart commonlist cursor-pointer' title='Add to Wish list'></i>
-              <i class='fa fa-heart text-danger wishlist cursor-pointer' title='Remove from wish list'></i>
+
+          @if($wishlist->where('user_id', Auth::id())->where('product_id', $product->id)->count() > 0)
+              <i class='fa fa-heart text-danger wishlist cursor-pointer' data-wishlist-state="1" title='Remove from wish list'></i>
+          @else
+              <i class='fa fa-heart text-grey commonlist cursor-pointer' data-wishlist-state="0" title='Add to Wish list'></i>
+          @endif
+
             </h6>
           
         </div>

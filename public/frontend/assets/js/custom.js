@@ -32,7 +32,6 @@ $('.addToCartBtn').click(function (e) {
 
 });
 
-
   $('.plus').click(function (e) { 
     e.preventDefault();
 
@@ -79,24 +78,6 @@ $('.addToCartBtn').click(function (e) {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-// Wishlist icon toggle
-const commonlistIcons = document.querySelectorAll('.commonlist');
-const wishlistIcons = document.querySelectorAll('.wishlist');
-
-commonlistIcons.forEach((commonlistIcon, index) => {
-  commonlistIcon.addEventListener('click', () => {
-    commonlistIcon.style.display = 'none';
-    wishlistIcons[index].style.display = 'inline-block';
-  });
-});
-
-wishlistIcons.forEach((wishlistIcon, index) => {
-  wishlistIcon.addEventListener('click', () => {
-    wishlistIcon.style.display = 'none';
-    commonlistIcons[index].style.display = 'inline-block';
-  });
-});
-
 
 // Notify icon toggle
 const notifyIcons = document.querySelectorAll(".notify-bell");
@@ -119,6 +100,7 @@ notifiedIcons.forEach((notifiedIcon, index) => {
 
 
 });
+
 
 
 // Delete Cart Items
@@ -151,3 +133,47 @@ $('.delCartItem').click(function (e) {
     
   }
 });
+
+
+// Handle the click event to toggle the wishlist state and update the icon
+$('.commonlist, .wishlist').click(function(e) {
+  e.preventDefault();
+
+  var product_id = $(this).closest('.productData').find('.product_id').val();
+  var icon = $(this); // Store a reference to the clicked icon
+
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+
+  // Toggle the data-wishlist-state attribute
+  var wishlistState = icon.data('wishlist-state');
+  var newWishlistState = 1 - wishlistState; // Toggle between 0 and 1
+
+  // Send AJAX request to update the database with the new wishlist state
+  $.ajax({
+      method: "POST",
+      url: newWishlistState === 1 ? "/add-to-wishlist" : "/delete-wishlist",
+      data: {
+          'product_id': product_id,
+          'wishlist_state': newWishlistState,
+      },
+      success: function(response) {
+          swal(response.status);
+
+          // Update the data-wishlist-state attribute and toggle the icon display
+          icon.data('wishlist-state', newWishlistState);
+
+          if (newWishlistState === 1) {
+              icon.addClass('text-danger');
+              icon.removeClass('text-grey');
+          } else {
+              icon.removeClass('text-danger');
+              icon.addClass('text-grey');
+          }
+      }
+  });
+});
+

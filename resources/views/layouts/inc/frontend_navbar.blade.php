@@ -13,7 +13,6 @@
 </style>
 
 
-
 <div class='container-fluid p-0'>
 <nav class="navbar navbar-expand-lg theme-bg pe-3 ps-3">
     <a class="navbar-brand" href="#">Navbar</a>
@@ -51,8 +50,22 @@
 
       <div class="d-flex align-items-center">
 
-    <a href="{{ url('cart') }}">
-      <i class="fa fa-shopping-cart"></i>
+    <a href="{{ url('cart') }}" class='me-2'>
+      <i class="fa fa-shopping-cart">
+        <span>Cart</span>
+      </i>
+    </a>
+
+    <a href="{{ url('wishlist') }}" class='me-2'>
+      <i class="fa fa-heart">
+        <span>Wishlist</span>
+      </i>
+    </a>
+
+    <a href="{{ url('cart') }}" class='me-2'>
+      <i class="fa fa-bell">
+        <span>Notify</span>
+      </i>
     </a>
 
       @if (Route::has('login'))
