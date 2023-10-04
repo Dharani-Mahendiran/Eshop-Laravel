@@ -33,11 +33,11 @@
 
             <div class="row col-12">
 
-            <div class='col-md-2 cart-img'>
+            <div class='col-md-1 cart-img'>
                 <i><img src="{{ asset('uploads/product/'.$item->product->image)}}" alt={{ $item->product->name  }}></i>
             </div>
 
-            <div class="col-md-8 itemData">
+            <div class="col-md-7 itemData">
                 <h5 class='wrap me-3'>{{ $item->product->name }}s</h5>
 
                 <div class="price-box me-3">
@@ -47,17 +47,17 @@
             </div>
 
 
-            <div class="col-md-2 actn-btns">
-                <a href="{{ url('category/'.$item->product->category->slug.'/'.$item->product->slug) }}" class='me-3'>
-                    <i class='fa fa-eye cursor-pointer' title='View Product'>
+            <div class="col-md-4 actn-btns">
+                <a href="{{ url('category/'.$item->product->category->slug.'/'.$item->product->slug) }}"  title='View Product' class='explore-btn'>
+                    <i class='fa fa-eye cursor-pointer'>
                         <span>View</span>
                     </i>
                 </a>
-                <i class='fa fa-heart text-danger cursor-pointer wishlist' title='Remove from wish list'>
+                <input type="hidden" value='{{ $item->product->id }}' class='product_id'>
+                <i class='fa fa-heart cursor-pointer wishlist remove-btn' title='Remove from wish list'>
                     <span>Remove</span>
                 </i>
             </div>
-
             </div>
 
 

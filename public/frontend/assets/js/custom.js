@@ -140,6 +140,7 @@ $('.commonlist, .wishlist').click(function(e) {
   e.preventDefault();
 
   var product_id = $(this).closest('.productData').find('.product_id').val();
+
   var icon = $(this); // Store a reference to the clicked icon
 
   $.ajaxSetup({
