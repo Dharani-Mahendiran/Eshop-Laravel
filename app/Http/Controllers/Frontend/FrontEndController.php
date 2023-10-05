@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Wishlist;
@@ -48,7 +49,8 @@ class FrontEndController extends Controller
 
                 $product = Product::where('slug', $prod_slug)->first();
                 $wishlist = Wishlist::all();
-                return view('frontend.products.view',compact('product', 'wishlist'));
+                $cart = Cart::all();
+                return view('frontend.products.view',compact('product', 'wishlist', 'cart'));
             }
             else{
                 return redirect('view-category/'.$cate_slug)->with('error','No product Found.');

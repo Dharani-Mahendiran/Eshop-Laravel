@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +63,8 @@ class CartController extends Controller
 
     public function viewCart(){
         $cartItems = Cart::where('user_id', Auth::id())->get();
-        return view('frontend.cart', compact('cartItems'));
+        $wishlist = Wishlist::all();
+        return view('frontend.cart', compact('cartItems', 'wishlist'));
     }
 
     public function deleteProduct(Request $request){

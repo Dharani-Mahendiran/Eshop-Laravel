@@ -242,6 +242,9 @@ outline: none;
 .cursor-pointer{
     cursor: pointer;
 }
+.color-inherit{
+    color: inherit;
+}
 /* Hide the number input spin buttons */
 .qty-input::-webkit-inner-spin-button,
 .qty-input::-webkit-outer-spin-button {
@@ -437,6 +440,7 @@ body.mycart {
 .mycart .pricing p{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .mycart .checkout{

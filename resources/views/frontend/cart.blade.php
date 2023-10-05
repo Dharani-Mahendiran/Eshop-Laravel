@@ -27,45 +27,51 @@
 
     <input type="hidden" value='{{ $item->id }}' class='cart_id'>
 
-    <div class="card-body row col-12 productData">
+    <a href="" class="text-decoration-none color-inherit">
+    <div class="card-body row col-12 productData  cursor-pointer">
+        <div class='cart-img col-md-4'>
+            <i>
+            <img src="{{ asset('uploads/product/'.$item->product->image)}}" alt={{ $item->product->name  }}>
+            </i>
+        </div>
 
-    <div class='cart-img col-md-4'>
-        <i>
-        <img src="{{ asset('uploads/product/'.$item->product->image)}}" alt={{ $item->product->name  }}>
-        </i>
+    
+        <div  class='cart-body col-md-8'>
+            <h5 class='wrap'>{{ $item->product->name }}
+                <input type="hidden" value='{{ $item->product_id }}' class='product_id'>
+                <div class="add-quantity">
+                    <button class="minus" aria-label="Decrease">&minus;</button>
+                    <input type="number" name='quantity' class="qty-input" value='{{ $item->product_qty }}'>
+                    <button class="plus" aria-label="Increase">&plus;</button>
+
+                    @if($wishlist->where('user_id', Auth::id())->where('product_id', $item->product->id)->count() > 0)
+                    <i class='fa fa-heart text-danger wishlist cursor-pointer border-0' data-wishlist-state="1" title='Remove from wish list'>
+                    </i>
+                    @else
+                        <i class='fa fa-heart text-grey commonlist cursor-pointer border-0' data-wishlist-state="0" title='Add to Wish list'>
+                        </i>
+                    @endif
+
+                </div>
+
+            
+
+            </h5>
+
+            <p>{{ $item->product->description }}</p>
+
+
+            <i class='fa fa-trash text-danger me-2 delCartItem cursor-pointer' title='Remove Item'>
+                <span>Remove Item</span>
+            </i>
+    
+
+
+        </div>
+        
+
     </div>
-
-   
-    <div  class='cart-body col-md-8'>
-         <h5 class='wrap'>{{ $item->product->name }}
-            <input type="hidden" value='{{ $item->product_id }}' class='product_id'>
-            <div class="add-quantity">
-                <button class="minus" aria-label="Decrease">&minus;</button>
-                <input type="number" name='quantity' class="qty-input" value='{{ $item->product_qty }}'>
-                <button class="plus" aria-label="Increase">&plus;</button>
-            </div>
-
-         </h5>
-
-         <p>{{ $item->product->description }}</p>
-
-
-        <i class='fa fa-trash text-danger me-2 delCartItem cursor-pointer' title='Remove Item'>
-            <span>Remove Item</span>
-        </i>
-  
-        <i class='fa fa-heart cursor-pointer commonlist' title='Add to Wish list'>
-            <span>Add to Wish list</span>
-        </i>
-        <i class='fa fa-heart text-danger cursor-pointer wishlist' title='Remove from wish list'>
-            <span>Remove from wish list</span>
-        </i>
-
-    </div>
-      
-
-    </div>
-
+    </a>
     <hr class='wrap'>
 
     @endforeach

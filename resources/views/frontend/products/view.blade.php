@@ -57,7 +57,16 @@
         <div class="cart">
             <div class="add-quantity">
                 <button class="minus" aria-label="Decrease">&minus;</button>
+            @if($cart->where('user_id', Auth::id())->where('product_id', $product->id)->count() > 0)
+            @foreach($cart as $cartItem)
+                @if($cartItem->user_id == Auth::id() && $cartItem->product_id == $product->id)
+                    <input type="number" name='quantity' class="qty-input" value='{{ $cartItem->product_qty }}'>
+                @endif
+            @endforeach
+            @else
                 <input type="number" name='quantity' class="qty-input" value="1">
+            @endif
+            
                 <button class="plus" aria-label="Increase">&plus;</button>
             </div>
 
