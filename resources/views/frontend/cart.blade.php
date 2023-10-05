@@ -23,11 +23,12 @@
         <h5>Cart Items<span> ({{ count($cartItems) }}) </span></h5>
     </div>
 
-    @foreach($cartItems as $item)
+    @foreach($cartItems as $index =>$item)
 
     <input type="hidden" value='{{ $item->id }}' class='cart_id'>
 
-    <a href="" class="text-decoration-none color-inherit">
+    <a href="{{ url('category/'.$products[$index]->category->slug.'/'.$products[$index]->slug) }}" class="text-decoration-none color-inherit">
+    
     <div class="card-body row col-12 productData  cursor-pointer">
         <div class='cart-img col-md-4'>
             <i>
@@ -72,6 +73,7 @@
 
     </div>
     </a>
+ 
     <hr class='wrap'>
 
     @endforeach

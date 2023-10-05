@@ -63,9 +63,17 @@ class CartController extends Controller
 
     public function viewCart(){
         $cartItems = Cart::where('user_id', Auth::id())->get();
-        $wishlist = Wishlist::all();
-        return view('frontend.cart', compact('cartItems', 'wishlist'));
-    }
+        
+        $products = []; 
+        foreach ($cartItems as $cartItem) {
+            $product = Product::find($cartItem->product_id); // Retrieve product by product_id
+            if ($product) {
+                $products[] = $product; // Add the product to the array
+            }
+        }
+            $wishlist = Wishlist::all();
+            return view('frontend.cart', compact('cartItems', 'wishlist', 'products'));
+        }
 
     public function deleteProduct(Request $request){
 
