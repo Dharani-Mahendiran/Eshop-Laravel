@@ -11,8 +11,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-bs-label="Close"></button>
         </div>
         <div class="modal-body">
-            <h5>Are you sure, you want to delete this category?</h5>
-            {{-- <p id="show-product-id"></p> --}}
+            <h5>Are you sure, you want to delete this product?</h5>
+            <p id="show-product-id" class='d-none'></p>
            </div>
            <div class="modal-footer">
              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -91,9 +91,10 @@
     document.querySelectorAll('.delete-product-btn').forEach(function(button) {
         button.addEventListener('click', function() {
             var productId = this.getAttribute('data-product-id');
+            // alert(productId);
             document.getElementById('show-product-id').textContent = 'Product ID: ' + productId;
             var deleteLink = document.getElementById('delete-link');
-            deleteLink.href = "{{ url('admin/category/del-category') }}/" + productId; // Update the delete link URL
+            deleteLink.href = "{{ url('admin/product/del-product') }}/" + productId; // Update the delete link URL
             $('#delete-link').attr('href', deleteUrl);
         });
     });

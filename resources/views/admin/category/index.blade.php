@@ -13,7 +13,7 @@
         </div>
         <div class="modal-body">
          <h5>Are you sure, you want to delete this category?</h5>
-         {{-- <p id="show-cate-id"></p> --}}
+         <p id="show-cate-id" class='d-none'></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -103,6 +103,7 @@
     document.querySelectorAll('.delete-category-btn').forEach(function(button) {
         button.addEventListener('click', function() {
             var categoryId = this.getAttribute('data-category-id');
+            // alert( categoryId);
             document.getElementById('show-cate-id').textContent = 'Category ID: ' + categoryId;
             var deleteLink = document.getElementById('delete-link');
             deleteLink.href = "{{ url('admin/category/del-category') }}/" + categoryId; // Update the delete link URL
