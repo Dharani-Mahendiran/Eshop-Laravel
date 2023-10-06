@@ -2,7 +2,7 @@
 
 
 @section('title'){{ $category->name }}@endsection
-@section('body_class', 'home-index')
+@section('body_class', 'home-index category-products')
 @section('content')
 
 <div class="breadcrumb">

@@ -117,9 +117,6 @@ img.w-100{
     background-color: #fff;
 }
 
-
-
-
 /* product view ui */
    
 .product-view .section-bg{
@@ -540,6 +537,12 @@ hr.wrap:last-child {
 
 .wishList .col-md-7.itemData{
     padding-left: 2rem;
+}
+/* category-products */
+.category-products .card{
+    min-height: 330px;
+    max-height: 330px;
+    overflow-y: auto;
 }
 
 /* responsive ui */
