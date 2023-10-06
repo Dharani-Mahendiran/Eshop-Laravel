@@ -2,7 +2,7 @@
 
 
 @section('title') Category @endsection
-@section('body_class', 'home-index')
+@section('body_class', 'home-index category')
 @section('content')
 
 @include('layouts.inc.frontend_carousel')

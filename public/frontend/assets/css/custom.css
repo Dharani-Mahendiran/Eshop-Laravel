@@ -88,16 +88,32 @@ img.w-100{
     max-height: 350px;
     overflow-y: auto;
 }
+/* home-index category */
+.home-index.category .card{
+    height: 500px;
+    max-height: 500px;
+}
+
+.home-index.category .card .card-body p{
+    min-height: 150px;
+    max-height: 150px;
+    overflow-y: auto;
+    white-space: normal;
+    text-overflow: ellipsis;
+}
 
 /* scrollbar */
-.card::-webkit-scrollbar {
+.card::-webkit-scrollbar,
+.card p::-webkit-scrollbar {
     width: 5px;
     background-color: #fff;
 }
-.card::-webkit-scrollbar-track {
-    background-color: #fff;
+.card::-webkit-scrollbar-track,
+.card p::-webkit-scrollbar-track{
+    background-color: #e1e1e1;
 }
-.card::-webkit-scrollbar-thumb {
+.card::-webkit-scrollbar-thumb,
+.card p::-webkit-scrollbar-thumb {
     background-color: #fff;
 }
 
