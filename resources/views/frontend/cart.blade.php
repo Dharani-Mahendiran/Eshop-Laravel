@@ -29,7 +29,6 @@
     @endphp
 
     @foreach($cartItems as $index =>$item)
-    <s>{{ $num++ }}</s>
     <input type="hidden" value='{{ $item->id }}' class='cart_id'>
 
     <a href="{{ url('category/'.$products[$index]->category->slug.'/'.$products[$index]->slug) }}" class="text-decoration-none color-inherit">
@@ -41,9 +40,8 @@
             </i>
         </div>
 
-    
         <div  class='cart-body col-md-10'>
-            <h5 class='wrap'>{{ $item->product->name }}
+            <h5 class='wrap'> {{-- $num++ --}} {{ $item->product->name }}
                 <input type="hidden" value='{{ $item->product_id }}' class='product_id'>
                 <div class="add-quantity">
                     <button class="minus changeQuantity" aria-label="Decrease">&minus;</button>
@@ -96,36 +94,44 @@
         <div class="card-header">
             <h5>Total Amount</span></h5>
         </div>
-        <div class="card-body pricing">
-            <p>
-                <span>M.R.P</span>
-                <span><s class='text-danger'>₹ 2000</s></span>
-            </p>
 
+@php 
+$num= 1;
+$product_total = 0;
+@endphp
 
-            <p>
-                <span>Discount</span>
-                <span>₹ 1000</span>
-            </p>
-           
-                
-            <p> 
-                <span>Total</span>
-                <span>₹ 1000</span>
-            </p>
+@foreach($cartItems as $index =>$item)
+@php 
+$product_total = $item->product->selling_price * $item->product_qty;
+$num =  $num++;
+@endphp
 
-            <hr>
+<div class="card-body pricing">
+<p> 
+    <i>{{ $item->product->name }}</i>
+    <span>Item: {{ $num++ }}</span>
+</p>
+<p>
+    <span>₹ {{ $item->product->selling_price }} * {{ $item->product_qty }}</span>
+    <span>₹ {{ $product_total }}</span>
+</p>
+</div>
 
-            <p> 
-                <span><b>Grand Total</b></span>
-                <span class='text-success'><b>₹ {{ $total }}</b></span>
-            </p>
+@endforeach
+<hr class='m-0'>
 
-            <div class='checkout'>
-            <button class='btn btn-warning text-light'>Go To Checkout</button>
-            </div>
+<div class="card-body pricing">
+<p> 
+    <span><b>Grand Total</b></span>
+    <span class='text-success'><b>₹ {{ $total }}</b></span>
+</p>
 
-        </div>
+<div class='checkout'>
+<button class='btn btn-warning text-light'>Go To Checkout</button>
+</div>
+
+</div>
+    
     </div>
 </div>
 @else
