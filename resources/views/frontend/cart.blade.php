@@ -23,35 +23,42 @@
         <h5>Cart Items<span> ({{ count($cartItems) }}) </span></h5>
     </div>
 
-    @foreach($cartItems as $index =>$item)
+    @php 
+    $total= 0;
+    $num = 1;
+    @endphp
 
+    @foreach($cartItems as $index =>$item)
+    <s>{{ $num++ }}</s>
     <input type="hidden" value='{{ $item->id }}' class='cart_id'>
 
     <a href="{{ url('category/'.$products[$index]->category->slug.'/'.$products[$index]->slug) }}" class="text-decoration-none color-inherit">
     
     <div class="card-body row col-12 productData  cursor-pointer">
-        <div class='cart-img col-md-4'>
+        <div class='cart-img col-md-2'>
             <i>
             <img src="{{ asset('uploads/product/'.$item->product->image)}}" alt={{ $item->product->name  }}>
             </i>
         </div>
 
     
-        <div  class='cart-body col-md-8'>
+        <div  class='cart-body col-md-10'>
             <h5 class='wrap'>{{ $item->product->name }}
                 <input type="hidden" value='{{ $item->product_id }}' class='product_id'>
                 <div class="add-quantity">
-                    <button class="minus" aria-label="Decrease">&minus;</button>
+                    <button class="minus changeQuantity" aria-label="Decrease">&minus;</button>
                     <input type="number" name='quantity' class="qty-input" value='{{ $item->product_qty }}'>
-                    <button class="plus" aria-label="Increase">&plus;</button>
+                    <button class="plus changeQuantity" aria-label="Increase">&plus;</button>
 
                     @if($wishlist->where('user_id', Auth::id())->where('product_id', $item->product->id)->count() > 0)
                     <i class='fa fa-heart text-danger wishlist cursor-pointer border-0' data-wishlist-state="1" title='Remove from wish list'>
                     </i>
                     @else
-                        <i class='fa fa-heart text-grey commonlist cursor-pointer border-0' data-wishlist-state="0" title='Add to Wish list'>
+                        <i class='fa fa-heart text-grey commonlist cursor-pointer' data-wishlist-state="0" title='Add to Wish list'>
                         </i>
                     @endif
+
+                    <i class='fa fa-trash text-danger delCartItem cursor-pointer' title='Remove Item'></i>
 
                 </div>
 
@@ -59,14 +66,11 @@
 
             </h5>
 
-            <p>{{ $item->product->description }}</p>
-
-
-            <i class='fa fa-trash text-danger me-2 delCartItem cursor-pointer' title='Remove Item'>
-                <span>Remove Item</span>
-            </i>
-    
-
+            {{-- <p>{{ $item->product->description }}</p> --}}
+            <div class="price-box">
+                <span>M.R.P <s class='text-danger'>₹ {{ $item->product->original_price }}</s></span>
+                <span class='text-success ms-2'>₹ {{ $item->product->selling_price }}</span>
+            </div>
 
         </div>
         
@@ -75,6 +79,11 @@
     </a>
  
     <hr class='wrap'>
+
+    @php 
+    $total += $item->product->selling_price * $item->product_qty;
+    $num =  $num++;
+    @endphp
 
     @endforeach
     
@@ -109,7 +118,7 @@
 
             <p> 
                 <span><b>Grand Total</b></span>
-                <span class='text-success'><b>₹ 1000</b></span>
+                <span class='text-success'><b>₹ {{ $total }}</b></span>
             </p>
 
             <div class='checkout'>

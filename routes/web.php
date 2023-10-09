@@ -50,6 +50,7 @@ Route::prefix('/')->group(function(){
         Route::controller(CartController::class)->group(function(){
             Route::get('cart', 'viewCart');
             Route::post('delete-cartItem', 'deleteProduct');
+            Route::post('update-cart', 'updateCart');
         });
 
 

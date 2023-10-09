@@ -17,7 +17,7 @@
           @foreach($featured_products as $product)
           <div class="item">
             <a href="{{ url('category/'.$product->category->slug.'/'.$product->slug) }}" class='text-decoration-none'>
-            <div class="card">
+            <div class="fea-product card">
               <i class='card-img'><img class='' src="{{ asset('uploads/product/'.$product->image) }}" alt="Product Image"></i>
               <div class="card-body">
                 <h5 class='text-ui'>{{ $product->name }}</h5>

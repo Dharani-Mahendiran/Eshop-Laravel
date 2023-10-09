@@ -75,6 +75,30 @@ class CartController extends Controller
             return view('frontend.cart', compact('cartItems', 'wishlist', 'products'));
         }
 
+
+    public function updateCart(Request $request){
+        $product_id = $request->input('product_id');
+        $product_qty = $request->input('product_qty');
+        
+        if(Auth::check()){
+            if(Cart::where('product_id', $product_id)->where('user_id', Auth::id())->exists()){
+   
+                $cart = Cart::where('product_id', $product_id)->where('user_id', Auth::id())->first();
+                $cart->product_qty = $product_qty;
+                $cart->update();
+                return response()->json(['status' => 'Product Quantity Updated']);
+             }
+             else{
+                 return response()->json(['status' => 'Product Not Found']);
+             }
+        }
+        else{ 
+            return redirect('/login')->with('warning','Login to continue');
+        }
+
+
+    }
+
     public function deleteProduct(Request $request){
 
         $product_id = $request->input('product_id');
@@ -90,6 +114,10 @@ class CartController extends Controller
         }
 
     }
+
+
+        
+
 
 
 
