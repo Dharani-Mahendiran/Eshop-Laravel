@@ -490,6 +490,18 @@ hr.wrap:last-child {
 .mycart .container{
     margin-top: 3rem;
 }
+.mycart  .pricing p.space-wrap{
+    align-items: baseline;
+}
+
+.mycart .space-wrap i{
+    max-width: 80%;
+}
+
+.mycart .space-wrap span{
+    max-width: 20%;
+}
+
 /* navbar */
 :root {
     --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans";
@@ -574,6 +586,9 @@ hr.wrap:last-child {
 @media (max-width:991.98px){
     .mycart .cart-body i{
         font-size: 12px;
+    }
+    .mycart h5.wrap{
+        display: block;
     }
 }
 @media (max-width:767.98px){

@@ -41,7 +41,8 @@
         </div>
 
         <div  class='cart-body col-md-10'>
-            <h5 class='wrap'> {{-- $num++ --}} {{ $item->product->name }}
+            <h5 class='wrap'> 
+                <p>{{-- $num++ --}} {{ $item->product->name }}</p>
                 <input type="hidden" value='{{ $item->product_id }}' class='product_id'>
                 <div class="add-quantity">
                     <button class="minus changeQuantity" aria-label="Decrease">&minus;</button>
@@ -107,7 +108,7 @@ $num =  $num++;
 @endphp
 
 <div class="card-body pricing">
-<p> 
+<p class='space-wrap'> 
     <i>{{ $item->product->name }}</i>
     <span>Item: {{ $num++ }}</span>
 </p>
@@ -126,7 +127,7 @@ $num =  $num++;
     <span class='text-success'><b>₹ {{ $total }}</b></span>
 </p>
 
-<div class='checkout'>
+<div class='checkout mt-3'>
 <button class='btn btn-warning text-light'>Go To Checkout</button>
 </div>
 
