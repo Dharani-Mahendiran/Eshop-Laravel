@@ -128,7 +128,7 @@ $num =  $num++;
 </p>
 
 <div class='checkout mt-3'>
-<button class='btn btn-warning text-light'>Go To Checkout</button>
+<a href="{{ url('checkout') }}"><button class='btn btn-warning text-light'>Go To Checkout</button></a>
 </div>
 
 </div>

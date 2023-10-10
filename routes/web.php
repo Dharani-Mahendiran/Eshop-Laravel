@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontEndController;
 use App\Http\Controllers\Frontend\WishlistController;
 
@@ -58,6 +59,11 @@ Route::prefix('/')->group(function(){
             Route::post('add-to-wishlist', 'addProduct');
             Route::get('wishlist', 'viewWishlist');
             Route::post('delete-wishlist', 'deleteProduct');
+        });
+
+
+        Route::controller(CheckoutController::class)->group(function(){
+            Route::get('checkout', 'index');
         });
 
 

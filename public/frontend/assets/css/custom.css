@@ -565,6 +565,19 @@ hr.wrap:last-child {
     overflow-y: auto;
 }
 
+
+/* checkout page ui */
+.checkout .form-wrap .col-md-6{
+   margin-top: 1rem;
+}
+.checkout .form-wrap .col-md-6 label{
+    margin-bottom: 1rem;
+}
+
+.checkout .CartText-size span b{
+    font-size: 1.5rem;
+}
+
 /* responsive ui */
 
 @media (max-width:1281.98px){
