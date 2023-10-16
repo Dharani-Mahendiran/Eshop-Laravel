@@ -44,6 +44,7 @@
             <h5 class='wrap'> 
                 <p>{{-- $num++ --}} {{ $item->product->name }}</p>
                 <input type="hidden" value='{{ $item->product_id }}' class='product_id'>
+                @if($item->product->quantity > 0)
                 <div class="add-quantity">
                     <button class="minus changeQuantity" aria-label="Decrease">&minus;</button>
                     <input type="number" name='quantity' class="qty-input" value='{{ $item->product_qty }}'>
@@ -60,6 +61,14 @@
                     <i class='fa fa-trash text-danger delCartItem cursor-pointer' title='Remove Item'></i>
 
                 </div>
+
+                @else
+                <div class='notify'>
+                <span class='stock-out'>Oops! This product is currently out of stock</span>
+                <i class='fa fa-bell ms-2 notify-bell cursor-pointer' title='Notify product'></i>
+                <i class='fa fa-bell ms-2 notified cursor-pointer' title='Remove from notify'></i>
+                </div>
+                @endif
 
             
 

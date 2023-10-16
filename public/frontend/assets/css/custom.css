@@ -159,9 +159,9 @@ img.w-100{
     align-items: center;
 }
 
-.product-view .trending,
-.product-view .stock-in,
-.product-view .stock-out{
+.trending,
+.stock-in,
+.stock-out{
     color: #fff;
     height: max-content;
     padding: 5px;
@@ -170,16 +170,16 @@ img.w-100{
     font-size: 12px;
 }
 
-.product-view .trending,
-.product-view .stock-in{
+.trending,
+.stock-in{
     background-color:#198754;
 }
 
-.product-view .stock-out{
+.stock-out{
     background-color:#dc3545;
 }
 
-.product-view .stock-in{
+.stock-in{
     display: block;
     margin-bottom: 0.5rem;
     width: max-content;

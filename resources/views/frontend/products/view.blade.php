@@ -51,7 +51,7 @@
         </div>
 
 
-
+        <input type="hidden" value='{{ $product->id }}' class='product_id'>
         @if($product->quantity > 0)
         <span class='stock-in'>In Stock</span>
         <div class="cart">
@@ -75,7 +75,7 @@
                 <i class="fa fa-shopping-cart"></i> Buy Now
             </button>
 
-            <input type="hidden" value='{{ $product->id }}' class='product_id'>
+            
             <button class="btn cart-btn addToCartBtn" tabindex="0">
                 <i class="fa fa-shopping-cart"></i> Add To Cart
             </button>
