@@ -33,7 +33,7 @@
 
     <a href="{{ url('category/'.$products[$index]->category->slug.'/'.$products[$index]->slug) }}" class="text-decoration-none color-inherit">
     
-    <div class="card-body row col-12 productData  cursor-pointer">
+    <div class="card-body row col-12 productData  cursor-pointer {{ $item->product->quantity == 0? 'opac': '' }}">
         <div class='cart-img col-md-2'>
             <i>
             <img src="{{ asset('uploads/product/'.$item->product->image)}}" alt={{ $item->product->name  }}>
@@ -67,6 +67,13 @@
                 <span class='stock-out'>Oops! This product is currently out of stock</span>
                 <i class='fa fa-bell ms-2 notify-bell cursor-pointer' title='Notify product'></i>
                 <i class='fa fa-bell ms-2 notified cursor-pointer' title='Remove from notify'></i>
+                @if($wishlist->where('user_id', Auth::id())->where('product_id', $item->product->id)->count() > 0)
+                <i class='fa fa-heart text-danger wishlist cursor-pointer border-0' data-wishlist-state="1" title='Remove from wish list'>
+                </i>
+                @else
+                    <i class='fa fa-heart text-grey commonlist cursor-pointer' data-wishlist-state="0" title='Add to Wish list'>
+                    </i>
+                @endif
                 </div>
                 @endif
 
@@ -102,48 +109,50 @@
 <div class="col-md-4">
     <div class="card p-0">
         <div class="card-header">
-            <h5>Total Amount</span></h5>
+            <h5>Total Amount</h5>
         </div>
 
-@php 
-$num= 1;
-$product_total = 0;
-@endphp
+        @php
+        $num = 1;
+        $product_total = 0;
+        $total = 0;
+        @endphp
 
-@foreach($cartItems as $index =>$item)
-@php 
-$product_total = $item->product->selling_price * $item->product_qty;
-$num =  $num++;
-@endphp
+        @foreach($cartItems as $index => $item)
+            @if($item->product->quantity > 0)
+                @php
+                    $product_total = $item->product->selling_price * $item->product_qty;
+                    $total += $product_total;
+                @endphp
 
-<div class="card-body pricing">
-<p class='space-wrap'> 
-    <i>{{ $item->product->name }}</i>
-    <span>Item: {{ $num++ }}</span>
-</p>
-<p>
-    <span>₹ {{ $item->product->selling_price }} * {{ $item->product_qty }}</span>
-    <span>₹ {{ $product_total }}</span>
-</p>
-</div>
+                <div class="card-body pricing">
+                    <p class='space-wrap'> 
+                        <i>{{ $item->product->name }}</i>
+                        <span>Item: {{ $num++ }}</span>
+                    </p>
+                    <p>
+                        <span>₹ {{ $item->product->selling_price }} * {{ $item->product_qty }}</span>
+                        <span>₹ {{ $product_total }}</span>
+                    </p>
+                </div>
+            @endif
+        @endforeach
 
-@endforeach
-<hr class='m-0'>
+        <hr class='m-0'>
 
-<div class="card-body pricing">
-<p> 
-    <span><b>Grand Total</b></span>
-    <span class='text-success'><b>₹ {{ $total }}</b></span>
-</p>
+        <div class="card-body pricing">
+            <p> 
+                <span><b>Grand Total</b></span>
+                <span class='text-success'><b>₹ {{ $total }}</b></span>
+            </p>
 
-<div class='checkout mt-3'>
-<a href="{{ url('checkout') }}"><button class='btn btn-warning text-light'>Go To Checkout</button></a>
-</div>
-
-</div>
-    
+            <div class='checkout mt-3'>
+                <a href="{{ url('checkout') }}"><button class='btn btn-warning text-light'>Go To Checkout</button></a>
+            </div>
+        </div>
     </div>
 </div>
+
 @else
 
 <div class="col-md-12">

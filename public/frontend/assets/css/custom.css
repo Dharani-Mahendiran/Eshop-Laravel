@@ -577,6 +577,12 @@ hr.wrap:last-child {
 .checkout .CartText-size span b{
     font-size: 1.5rem;
 }
+.opac{
+    opacity:0.5;
+}
+.stockZero{
+display:none;
+}
 
 /* responsive ui */
 
@@ -640,4 +646,3 @@ hr.wrap:last-child {
 }
 
 
-  

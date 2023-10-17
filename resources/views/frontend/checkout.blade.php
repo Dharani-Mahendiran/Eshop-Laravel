@@ -104,6 +104,7 @@
         @endphp
         
         @foreach($cartItems as $index =>$item)
+        @if($item->product->quantity > 0)
         @php 
         $num =  $num++;
         $product_total = $item->product->selling_price * $item->product_qty;
@@ -136,7 +137,7 @@
 
 
         </div>
-        
+     @endif   
 @endforeach
 
 
