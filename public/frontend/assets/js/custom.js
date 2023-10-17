@@ -140,29 +140,35 @@ $('.delCartItem').click(function (e) {
   $product_id =  $(this).closest('.productData').find('.product_id').val();
   // alert($product_id);
 
-  var confirmDelete = confirm('Remove item from cart?');
-  if (confirmDelete) {
-    $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $.ajax({
-      type: "POST",
-      url: "delete-cartItem",
-      data: {
-        'product_id' : $product_id,
-      },
-      success: function (response) {
-        swal("", response.status, "success");
-        setTimeout(function() {window.location.reload();}, 1000);
-      }
-    });
-  } else {
-    
+  var id = $(this).attr('id');
+  if (id !== 'stockOut') {
+    var confirmDelete = confirm('Remove item from cart?');
+    if (!confirmDelete) {
+      return; // If the user cancels, do not proceed with the deletion
+    }
   }
+
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+
+  $.ajax({
+    type: "POST",
+    url: "delete-cartItem",
+    data: {
+      'product_id' : $product_id,
+    },
+    success: function (response) {
+      if (id !== 'stockOut') {
+        swal("", response.status, "success"); 
+      }
+      setTimeout(function() {window.location.reload();}, 1000);
+    }
+  });
 });
+
 
 
 // Handle the click event to toggle the wishlist state and update the icon

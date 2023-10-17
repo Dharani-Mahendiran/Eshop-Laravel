@@ -74,6 +74,7 @@
                     <i class='fa fa-heart text-grey commonlist cursor-pointer' data-wishlist-state="0" title='Add to Wish list'>
                     </i>
                 @endif
+                <i class='fa fa-times text-danger delCartItem cursor-pointer' id='stockOut' title='Remove Item'></i>
                 </div>
                 @endif
 
