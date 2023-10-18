@@ -27,52 +27,52 @@
                         <div class="row form-wrap mb-3">
                             <div class="col-md-6">
                                 <label for="">First Name</label>
-                                <input type="text" class='form-control' placeholder="Enter First Name" name='name'>
+                                <input type="text" class='form-control' value={{ Auth::user()->name }} placeholder="Enter First Name" name='name'>
                                 <span id="name-error" class='text-danger'></span>
                             </div>
                             <div class="col-md-6">
                                 <label for="">Last Name</label>
-                                <input type="text" class='form-control' placeholder="Enter Last Name" name='lname'>
+                                <input type="text" class='form-control' value={{ Auth::user()->lname }} placeholder="Enter Last Name" name='lname'>
                                 <span id="lname-error" class='text-danger'></span>
                             </div>
                             <div class="col-md-6">
                                 <label for="">Email</label>
-                                <input type="text" class='form-control' placeholder="Enter Email" name='email'>
+                                <input type="text" class='form-control' value={{ Auth::user()->email }}  placeholder="Enter Email" name='email'>
                                 <span id="email-error" class='text-danger'></span>
                             </div>
                             <div class="col-md-6">
                                 <label for="">Phone Number</label>
-                                <input type="number" class='form-control' placeholder="Enter Phone Number" name='contact'>
+                                <input type="number" class='form-control' value={{ Auth::user()->phone }} placeholder="Enter Phone Number"  name='contact'>
                                 <span id="contact-error" class='text-danger'></span>
                             </div>
                             <div class="col-md-6">
                                 <label for="">Alternative Contact</label>
-                                <input type="number" class='form-control' placeholder="Enter Alternative Contact" name='alt_contact'>
+                                <input type="number" class='form-control' value={{ Auth::user()->alt_contact }} placeholder="Enter Alternative Contact" name='alt_contact'>
                                 <span id="altcontact-error" class='text-danger'></span>
                             </div>
                             <div class="col-md-6">
                                 <label for="">Address</label>
-                                <input type="text" class='form-control' placeholder="Enter Address" name='address'>
+                                <input type="text" class='form-control' value={{ Auth::user()->address }}  placeholder="Enter Address" name='address'>
                                 <span id="address-error" class='text-danger'></span>
                             </div>
                             <div class="col-md-6">
                                 <label for="">City</label>
-                                <input type="text" class='form-control' placeholder="Enter City" name='city'>
+                                <input type="text" class='form-control' value={{ Auth::user()->city }}  placeholder="Enter City" name='city'>
                                 <span id="city-error" class='text-danger'></span>
                             </div>
                             <div class="col-md-6">
                                 <label for="">State</label>
-                                <input type="text" class='form-control' placeholder="Enter State" name='state'>
+                                <input type="text" class='form-control' value={{ Auth::user()->state }}  placeholder="Enter State" name='state'>
                                 <span id="state-error" class='text-danger'></span>
                             </div>
                             <div class="col-md-6">
                                 <label for="">Country</label>
-                                <input type="text" class='form-control' placeholder="Enter Country" name='country'>
+                                <input type="text" class='form-control' value={{ Auth::user()->country }} placeholder="Enter Country" name='country'>
                                 <span id="country-error" class='text-danger'></span>
                             </div>
                             <div class="col-md-6">
                                 <label for="">Pincode</label>
-                                <input type="number" class='form-control' placeholder="Enter Pincode" name='pincode'>
+                                <input type="number" class='form-control' value={{ Auth::user()->pincode }} placeholder="Enter Pincode" name='pincode'>
                                 <span id="pincode-error" class='text-danger'></span>
                             </div>
 

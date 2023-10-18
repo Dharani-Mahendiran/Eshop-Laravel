@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,6 +21,7 @@ class CheckoutController extends Controller
     public function placeorder(Request $request){
 
         $order = new Order();
+        $order->user_id = Auth::id();
         $order->name = $request->input('name');
         $order->lname = $request->input('lname');
         $order->email = $request->input('email');
@@ -45,6 +47,14 @@ class CheckoutController extends Controller
                 'product_qty' => $item->product_qty,
                 'price' => $item->product->selling_price,
             ]);
+
+            // Update product quantity, each time the product is ordered.
+            $Product = Product::where('id', $item->product_id)->first();
+            $Product->quantity = $Product->quantity - $item->product_qty;
+            $Product->update();
+
+
+
         }
         
         if(Auth::user()->address == NULL){
@@ -59,6 +69,9 @@ class CheckoutController extends Controller
             $user->pincode = $request->input('pincode');
             $user->update();
         }
+
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+        Cart::destroy($cartItems);
 
         return redirect('/')->with('message', 'Order Placed Successfully');
  
