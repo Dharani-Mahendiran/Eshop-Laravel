@@ -243,28 +243,24 @@ $('.wishlistBtn').click(function(e) {
 });
 
 
-// form validation for checkout basic details
-document.querySelector('.placeOrder').addEventListener('click', function (event) {
-event.preventDefault();
+function submitOrder() {
+  // Remove all existing error messages
+  $(".text-danger").text("");
 
-// Remove all existing error messages
-$(".text-danger").text("");
+  // Track whether there are validation errors
+  let hasError = false;
 
-// Track whether there are validation errors
-let hasError = false;
-
-$(".FormCheckout").each(function () {
-
-const name = $("input[name='name']").val();
+$(".placeOrder").each(function () {
+  const name = $("input[name='name']").val();
   if (name === "") {
-    $("#name-error").text("First Name is required");
-    hasError = true;
-  }else if (!/^[a-zA-Z]+$/.test(name)) {
-    $("#name-error").text("Only letters alowed");
-    hasError = true;
+      $("#name-error").text("First Name is required");
+      hasError = true;
+  } else if (!/^[a-zA-Z]+$/.test(name)) {
+      $("#name-error").text("Only letters allowed");
+      hasError = true;
   }
 
-const lname = $("input[name='l_name']").val();
+const lname = $("input[name='lname']").val();
 if (lname === "") {
   $("#lname-error").text("Last Name is required");
     hasError = true;
@@ -355,11 +351,12 @@ if (pincode === "") {
     hasError = true;
 }
 
+// If there are any errors, prevent form submission
 if (hasError) {
-    return;
+  return;
 }
 
-
+// If there are no errors, submit the form
+$(".FormCheckout").submit();
 });
-
-});
+}

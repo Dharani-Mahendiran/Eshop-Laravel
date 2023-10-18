@@ -13,6 +13,7 @@
 
 <div class="container">
 <form action="{{ url('place-order')  }}" method='POST' class='FormCheckout'>
+    {{ csrf_field() }}
     <div class="row">
 
         <div class="col-md-8">
@@ -31,7 +32,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="">Last Name</label>
-                                <input type="text" class='form-control' placeholder="Enter Last Name" name='l_name'>
+                                <input type="text" class='form-control' placeholder="Enter Last Name" name='lname'>
                                 <span id="lname-error" class='text-danger'></span>
                             </div>
                             <div class="col-md-6">
@@ -138,7 +139,7 @@
             </p>
 
             <div class='checkout mt-3'>
-            <button type='submit' class='btn btn-success text-light placeOrder'>Place Order</button>
+            <button type='button' class='btn btn-success text-light placeOrder' onclick='submitOrder()'>Place Order</button>
             </div>
 
             </div>
