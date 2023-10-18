@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Auth;
 class CheckoutController extends Controller
 {
     public function index(){
- 
-
         $cartItems = Cart::where('user_id', Auth::id())->get();
         return view('frontend.checkout', compact('cartItems'));
+    }
+
+    public function placeorder(Request $request){
+
     }
 }
