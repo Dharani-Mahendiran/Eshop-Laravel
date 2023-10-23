@@ -70,6 +70,7 @@ Route::prefix('/')->group(function(){
 
         Route::controller(UserController::class)->group(function(){
             Route::get('my-orders', 'index');
+            Route::get('order-view/{orderitem}', 'view');
         });
             
 
