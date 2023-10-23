@@ -46,13 +46,13 @@ class CheckoutController extends Controller
                 'product_id' => $item->product_id,
                 'product_qty' => $item->product_qty,
                 'price' => $item->product->selling_price,
+                'tracking_number' => $this->generateTrackingNumber(),
             ]);
 
             // Update product quantity, each time the product is ordered.
             $Product = Product::where('id', $item->product_id)->first();
             $Product->quantity = $Product->quantity - $item->product_qty;
             $Product->update();
-
 
 
         }
