@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TwoFactorController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\CheckoutController;
@@ -67,7 +68,10 @@ Route::prefix('/')->group(function(){
             Route::POST('place-order', 'placeorder');
         });
 
-
+        Route::controller(UserController::class)->group(function(){
+            Route::get('my-orders', 'index');
+        });
+            
 
     });
     

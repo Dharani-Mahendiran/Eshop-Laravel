@@ -68,6 +68,12 @@
       </i>
     </a>
 
+    <a href="{{ url('my-orders') }}" class='me-2'>
+      <i class="fa fa-shopping-cart">
+        <span>My Order</span>
+      </i>
+    </a>
+
       @if (Route::has('login'))
       <div class="d-flex nav-end">
           @auth
