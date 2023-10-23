@@ -639,6 +639,15 @@ display:none;
     padding: 0;
 }
 
+.goBk-btn{
+    background-color: #dc3545;
+    color: #fff;
+    border-radius: 6px;
+    border: none;
+    padding: 5px 10px;
+}
+
+
 /* responsive ui */
 
 @media (max-width:1281.98px){

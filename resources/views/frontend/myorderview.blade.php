@@ -5,8 +5,9 @@
 @section('body_class', 'home-index product-view orderview')
 @section('content')
 
-<div class="breadcrumb">
-    <h4>Order/{{ $item->product->name }}</h4>
+<div class="breadcrumb d-flex justify-content-between align-items-center">
+    <h4 class=''>Order/{{ $item->product->name }}</h4>
+    <button class='goBk-btn'>Go Back</button>
 </div>
 
 <div class="section-bg productData">
@@ -24,9 +25,12 @@
             <div class="col-md-8 content">
 
 
-                <h4 class='py-2'><strong><i class='text-warning'>
-                    Order Id : {{ $item->tracking_number }}</i>
-                </strong></h4>
+                <h4 class='py-2 d-flex justify-content-between'>
+                    <i class='text-warning'><strong>Order Id : {{ $item->tracking_number }}</strong></i>
+
+                    <i class='fa fa-download cursor-pointer text-success' title="Download Invoice"></i>
+                
+                </h4>
 
 
                 <div class='product-box'>
@@ -64,7 +68,7 @@
                 <div class="cart">
                 <form action="">
                     <button class="btn buy-btn bg-danger" tabindex="0">
-                        <i class="fa fa-shopping-cart"></i> Re-Order Product?
+                        <i class="fa fa-shopping-cart "></i> Re-Order Product?
                     </button>
                 </form>
                 </div>
