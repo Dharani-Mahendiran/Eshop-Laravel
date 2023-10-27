@@ -85,11 +85,9 @@
                 <div class="card p-0">
                 <div class="card-header d-flex justify-content-between">
                 <h5>Order Details</h5>
-                <form action="" class='text-end'>
-                    <button class="btn buy-btn bg-warning" tabindex="0">
-                        <i class="fa fa-shopping-cart text-white">  Re-Order Product?</i> 
-                    </button>
-                </form>
+                <a href="{{ url('category/'.$item->product->category->slug.'/'.$item->product->slug) }}" class="btn buy-btn bg-warning">
+                    <i class="fa fa-shopping-cart text-white">  Re-Order Product?</i> 
+                </a>
                 </div>
                 
                                         
