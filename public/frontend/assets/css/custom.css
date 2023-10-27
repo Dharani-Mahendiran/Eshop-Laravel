@@ -696,6 +696,10 @@ display:none;
     font-size: 20px;
 }
 
+.orderview  h4.text-end b {
+    font-weight: 300;
+    font-size: 35px;
+}
 /* responsive ui */
 
 @media (max-width:1281.98px){
@@ -824,7 +828,9 @@ display:none;
         width: 70px;
         height: 70px;
     }
-    
+    .orderview  h4.text-end b {
+        font-size: 25px;
+    }
 }
 
 

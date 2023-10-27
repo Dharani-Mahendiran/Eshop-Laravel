@@ -152,7 +152,7 @@
                 
 
                                 <h4 class='text-end'>
-                                    <b>Grand Total</b> <span class="text-success"><b>₹ {{ $item->price }}</b></span>
+                                    <b>Grand Total  </b> <span class="text-success"><b>₹ {{ $item->price }}</b></span>
                                 </h4>
 
                               
