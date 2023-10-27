@@ -2,83 +2,173 @@
 
 
 @section('title') Order View  @endsection
-@section('body_class', 'home-index product-view orderview')
+@section('body_class', 'orderview')
 @section('content')
 
-<div class="breadcrumb d-flex justify-content-between align-items-center">
-    <h4 class=''>Order/{{ $item->product->name }}</h4>
+<div class="breadcrumb d-md-flex justify-content-between align-items-center d-block">
+    <h4 class='mb-3 mb-md-0'>Order/{{ $item->product->name }}</h4>
     <button class='goBk-btn'>Go Back</button>
 </div>
 
-<div class="section-bg productData">
+<div class="section-bg productData theme-bg p-lg-5 p-md-3">
     <div class="container-fluid">
-        <div class="row ui">
+        <div class="row">
 
-
-            <div class="col-md-4">
-                <i class='product-i'>
-                    <img src="{{ asset('uploads/product/'.$item->product->image)}}" alt={{ $item->product->name  }}>
-                </i>
-            </div>
-
-
-            <div class="col-md-8 content">
-
-
-                <h4 class='py-2 d-flex justify-content-between'>
-                    <i class='text-warning'><strong>Order Id : {{ $item->tracking_number }}</strong></i>
-
-                    <i class='fa fa-download cursor-pointer text-success' title="Download Invoice"></i>
-                
-                </h4>
-
-
-                <div class='product-box'>
-                    <h4>{{ $item->product->name }}</h4>
-                   
-                    <h6 class="">
-                      @if($item->product->trending == 1)
-                        <span class='trending'>Trending</span>
-                      @endif
-        
-                  @if($wishlist->where('user_id', Auth::id())->where('product_id', $item->product->id)->count() > 0)
-                      <i class='fa fa-heart text-danger wishlist cursor-pointer' data-wishlist-state="1" title='Remove from wish list'></i>
-                  @else
-                      <i class='fa fa-heart text-grey commonlist cursor-pointer' data-wishlist-state="0" title='Add to Wish list'></i>
-                  @endif
-        
-                    </h6>
+            <div class="col-md-5">
+                <div class="card p-0">
+                    <div class="card-header">
+                        <h5>Basic Details</h5>
+                    </div>
+                    <div class="card-body row col-12 productData cursor-pointer">
                   
-                </div>
-        
-        
-                <div class="price-box">
-                    <span>M.R.P <s class='text-danger'>₹ {{ $item->product->original_price }}</s></span>
-                    <span class='text-success ms-2'>₹ {{ $item->product->selling_price }}</span>
-                </div>
-        
-                <div class="feature-box">
-                    <h5> Description About this product:- </h5>
-                    <p>{{ $item->product->description }}</p>
-                </div>
-        
-        
-                <input type="hidden" value='{{ $item->product->id }}' class='product_id'>
+                            <div class="row form-wrap mb-3">
+                                <div class="col-md-6">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control" value={{ $item->order->name }} placeholder="Enter First Name" name="name">
+                                    <span id="name-error" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Last Name</label>
+                                    <input type="text" class="form-control" value={{ $item->order->lname }} placeholder="Enter Last Name" name="lname">
+                                    <span id="lname-error" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Email</label>
+                                    <input type="text" class="form-control" value={{ $item->order->email }} placeholder="Enter Email" name="email">
+                                    <span id="email-error" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Phone Number</label>
+                                    <input type="number" class="form-control" value={{ $item->order->phone }} placeholder="Enter Phone Number" name="contact">
+                                    <span id="contact-error" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Alternative Contact</label>
+                                    <input type="number" class="form-control" value="{{ $item->order->alt_contact ? $item->order->alt_contact : '' }}" placeholder="{{ !$item->order->alt_contact ? 'NULL' : 'Enter Alternative Contact' }}" name="alt_contact">
+                                    <span id="altcontact-error" class="text-danger"></span>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="">Address</label>
+                                    <input type="text" class="form-control" value="39/45" placeholder="Enter Address" name="address">
+                                    <span id="address-error" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">City</label>
+                                    <input type="text" class="form-control" value="Coimbatore" placeholder="Enter City" name="city">
+                                    <span id="city-error" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">State</label>
+                                    <input type="text" class="form-control" value="Tamil" nadu="" placeholder="Enter State" name="state">
+                                    <span id="state-error" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Country</label>
+                                    <input type="text" class="form-control" value="India" placeholder="Enter Country" name="country">
+                                    <span id="country-error" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Pincode</label>
+                                    <input type="number" class="form-control" value="641020" placeholder="Enter Pincode" name="pincode">
+                                    <span id="pincode-error" class="text-danger"></span>
+                                </div>
+    
+                            </div>
 
-                <div class="cart">
-                <form action="">
-                    <button class="btn buy-btn bg-danger" tabindex="0">
-                        <i class="fa fa-shopping-cart "></i> Re-Order Product?
+    
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-7">
+                <div class="card p-0">
+                <div class="card-header d-flex justify-content-between">
+                <h5>Order Details</h5>
+                <form action="" class='text-end'>
+                    <button class="btn buy-btn bg-warning" tabindex="0">
+                        <i class="fa fa-shopping-cart text-white">  Re-Order Product?</i> 
                     </button>
                 </form>
                 </div>
+                
+                                        
+                <div class="card-body pricing">
 
+                    <div class="row">
+                     
+                            <div class="col-md-4">
+                                <i class='product-i'>
+                                    <img src="{{ asset('uploads/product/'.$item->product->image)}}" alt={{ $item->product->name  }}>
+                                </i>
+                            </div>
+                
+                
+                            <div class="col-md-8 content">
+                
+                            <div class='py-2 d-flex justify-content-between'> 
+                                <h4 class='m-0'>
+                                    <i class='text-warning'><strong>Order Id : {{ $item->tracking_number }}</strong></i>
+                                </h4>
+
+                                
+                                <h4 class='m-0 d-flex align-items-center'>
+                                    <i class='fa fa-download cursor-pointer text-success me-2' title="Download Invoice"></i>
+                                    @if($item->product->trending == 1)
+                                        <span class='trending me-2'>Trending</span>
+                                    @endif
+                        
+                                    @if($wishlist->where('user_id', Auth::id())->where('product_id', $item->product->id)->count() > 0)
+                                        <i class='fa fa-heart text-danger wishlist cursor-pointer' data-wishlist-state="1" title='Remove from wish list'></i>
+                                    @else
+                                        <i class='fa fa-heart text-grey commonlist cursor-pointer' data-wishlist-state="0" title='Add to Wish list'></i>
+                                    @endif
+                                
+                                </h4>
+
+                            </div>
+                
         
-        
-        
+                              <div class="table-orders">
+                                <table class='table'>
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-white">
+                                            <td>{{ $item->product->name }}</td>
+                                            <td>₹ {{ $item->product->selling_price }}</td>
+                                            <td>{{ $item->product_qty }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                              </div>
+                              
+                        
+                        
+                                <input type="hidden" value='{{ $item->product->id }}' class='product_id'>
+                
+
+                                <h4 class='text-end'>
+                                    <b>Grand Total</b> <span class="text-success"><b>₹ {{ $item->price }}</b></span>
+                                </h4>
+
+                              
+
+                        </div>
+                    </div>
+
+                </div>
+                         
+                </div>
+    
             </div>
-
-
+        
+      
 
         </div>
     </div>

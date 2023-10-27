@@ -45,7 +45,7 @@ class CheckoutController extends Controller
                 'order_id' => $order->id,
                 'product_id' => $item->product_id,
                 'product_qty' => $item->product_qty,
-                'price' => $item->product->selling_price,
+                'price' =>   $item->product_qty * $item->product->selling_price,
                 'tracking_number' => $this->generateTrackingNumber(),
             ]);
 

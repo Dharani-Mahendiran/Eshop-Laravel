@@ -13,7 +13,7 @@
 <div class="card-header theme-bg">
     <h3>My Orders</h3>
 </div>
-
+@if(count($orders) > 0)
 @foreach ($orders  as $order)
     @foreach ($orderItems[$order->id] as $item)
 
@@ -61,6 +61,28 @@
         <hr class="wrap m-0">
     @endforeach
 @endforeach
+
+
+
+@else
+
+        <div class="card-body d-block">
+
+            <h6 class='text-danger text-center m-4'><i class="fa fa-shopping-cart"></i> 
+                No Orders Yet!
+            </h6>
+
+            <h4 class='text-center m-4'>Order Now to enjoy our products!</h4>
+
+            <div class='d-flex justify-content-center m-4'>
+                <a href="{{ url('/category') }}" class='text-decoration-none'>
+                <p class="explore-btn">Explore<i class="fa fa-arrow-right ms-2"></i></p>
+                </a>
+            </div>
+            
+        </div>
+@endif
+
 
 
 </div>

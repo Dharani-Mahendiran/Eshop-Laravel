@@ -567,14 +567,17 @@ hr.wrap:last-child {
 
 
 /* checkout page ui */
-.checkout .form-wrap .col-md-6{
+.checkout .form-wrap .col-md-6,
+.orderview .form-wrap .col-md-6{
    margin-top: 1rem;
 }
-.checkout .form-wrap .col-md-6 label{
+.checkout .form-wrap .col-md-6 label,
+.orderview .form-wrap .col-md-6 label{
     margin-bottom: 1rem;
 }
 
-.checkout .CartText-size span b{
+.checkout .CartText-size span b,
+.orderview .CartText-size span b{
     font-size: 1.5rem;
 }
 .opac{
@@ -647,6 +650,51 @@ display:none;
     padding: 5px 10px;
 }
 
+/* order view ui */
+.orderview .card-header {
+    background: #65E4A3;
+    color: #0A2640;
+}
+.orderview .pricing p.space-wrap {
+    align-items: baseline;
+}
+.orderview h5.wrap, .orderview .pricing p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+.orderview .product-i{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orderview .product-i img{
+    width: 100%;
+    height: 300px;
+}
+.orderview .product-box{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 20px;
+    align-items: center;
+}
+.orderview table{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.orderview table th{
+    font-size: 21px;
+}
+
+.orderview table td{
+    font-size: 20px;
+}
 
 /* responsive ui */
 
@@ -655,6 +703,25 @@ display:none;
     .product-view .buy-btn, .product-view .cart-btn{
         width: 100px;
     }
+
+
+    .orderview table th{
+        font-size: 16px;
+    }
+    .orderview table td{
+        font-size: 14px;
+    }
+
+    .orderview .py-2 h4,
+    .orderview  h4.text-end{
+        font-size:1.2rem
+    }
+
+    .orderview .btn.buy-btn.bg-warning{
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
 }
     
 @media (max-width:1024.98px){
@@ -664,6 +731,25 @@ display:none;
     .product-view .container-fluid {
         padding: 5rem 3rem;
     }
+
+    .orderview .col-md-5,  .orderview .col-md-7{
+        flex: 0 0 auto;
+        width: 100%;
+        margin: 15px 0px 20px;
+    }
+
+
+    .orderview .product-i img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .orderview table {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+
 }
 
 @media (max-width:991.98px){
@@ -673,6 +759,23 @@ display:none;
     .mycart h5.wrap{
         display: block;
     }
+
+    .orderview .form-wrap .col-md-6 {
+        flex: 0 0 auto;
+        width: 100%;
+    } 
+
+    .orderview .card-body.row,
+    .orderview .row.form-wrap{ 
+        padding: 0;
+        margin: 0;
+        display: block;
+    }
+
+    .orderview .py-2 h4, .orderview h4.text-end {
+        font-size: 1rem;
+    }
+
 }
 @media (max-width:767.98px){
     .product-view .container-fluid {

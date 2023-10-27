@@ -13,7 +13,8 @@ class UserController extends Controller
 {
     public function index(){
 
-        $orders = Order::where('user_id', Auth::id())->get();
+        $orders = Order::where('user_id', Auth::id())->orderBy('updated_at', 'desc')->get();
+
         $orderItems = [];
     
         foreach ($orders as $order) {
@@ -28,7 +29,7 @@ class UserController extends Controller
         $orders = Order::where('user_id', Auth::id())->get();
         $item = OrderItem::where('id', $orderitem->id)->first();
         $wishlist = Wishlist::all();
-        return view('frontend.myorderview', compact('item','wishlist'));
+        return view('frontend.myorderview', compact('orders','item','wishlist'));
     }
     
     
