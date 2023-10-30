@@ -22,6 +22,9 @@
   <link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
   <link rel="shortcut icon" href="{{asset('admin/images/favicon.png')}}" />
 
+  {{-- datepicker css --}}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
   <link href="{{ asset('admin\assets\css\custom.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -64,6 +67,10 @@
     <script src="{{ asset('admin/js/data-table.js')}}"></script>
     <script src="{{ asset('admin/js/jquery.dataTables.js')}}"></script>
     <script src="{{ asset('admin/js/dataTables.bootstrap4.js')}}"></script>
+
+    {{-- datepicker js --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     {{-- sweet alert cdn --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

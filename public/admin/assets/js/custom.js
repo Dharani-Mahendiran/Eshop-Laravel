@@ -93,3 +93,11 @@ function toggleEditTrending(checkbox) {
         span.classList.add('text-info');
     }
 }
+
+//  datepicker script 
+$( function() {
+    $( "#datepicker" ).datepicker();
+    $( "#format" ).on( "change", function() {
+    $( "#datepicker" ).datepicker( "option", "dateFormat", $( this ).val() );
+    });
+} );

@@ -168,19 +168,34 @@
                     <h5>Update Status</h5>
                 </div>
                 <div class="card-body">
-                    <label for="">Choose Status</label>
+                    
 
                 <form action="{{ url('admin/order-update/'.$item->id) }}" method="POST">
                     @csrf
                     @method('PUT')
+
+
+                <div class='row col-12'>
+
+                    <div class="form-group col-md-6">
+                    <label for="">Choose Status</label>
                     <select class="form-select" name="order_status">
                         <option value="0" {{ $item->status == 0 ? 'selected' : '' }}>Order Placed</option>
                         <option value="1" {{ $item->status == 1 ? 'selected' : '' }}>Item Packed</option>
                         <option value="2" {{ $item->status == 2 ? 'selected' : '' }}>In Transit</option>
                         <option value="3" {{ $item->status == 3 ? 'selected' : '' }}>Delivered</option>
                     </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                    <label for="">Delivery Date</label>
+                    <input type="text" id="datepicker" size="30" class='form-control'>
+                    </div>
+
+                </div>
 
                     <button class='btn btn-danger mt-3 float-end'>Update</button>
+
                 </form>
                     
                 </div>
@@ -196,3 +211,4 @@
 </div>
 
 @endsection
+
