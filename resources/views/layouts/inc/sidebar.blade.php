@@ -40,32 +40,19 @@
       </div>
     </li>
 
-    <li class="nav-item">
-      <a class="nav-link" href="pages/forms/basic_elements.html">
+
+    <li class="nav-item {{Request::is('admin/orders')?'li-active':'';}}">
+      <a class="nav-link" href="{{url('admin/orders')}}">
         <i class="mdi mdi-circle-outline menu-icon"></i>
-        <span class="menu-title">Brands</span>
+        <span class="menu-title">Orders</span>
       </a>
     </li>
 
 
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#users" aria-expanded="false" aria-controls="ui-basic">
+    <li class="nav-item {{Request::is('admin/users')?'li-active':'';}}">
+      <a class="nav-link" href="{{url('admin/users')}}">
         <i class="mdi mdi-account-multiple-plus menu-icon"></i>
         <span class="menu-title">Users</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="users">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item {{Request::is('admin/user/create') && !Request::is('admin/user') ?'li-active':'';}}"> <a class="nav-link" href="pages/ui-features/buttons.html">Add User</a></li>
-          <li class="nav-item {{Request::is('admin/user') && !Request::is('admin/user/create') ?'li-active':'';}}"> <a class="nav-link" href="pages/ui-features/typography.html">View User</a></li>
-        </ul>
-      </div>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-link" href="documentation/documentation.html">
-        <i class="mdi mdi-collage menu-icon"></i>
-        <span class="menu-title">Home Slider</span>
       </a>
     </li>
     
