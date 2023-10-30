@@ -18,6 +18,7 @@ class OrderItem extends Model
         'status',
         'message',
         'tracking_number',
+        'delivery_date',
     ];
 
 

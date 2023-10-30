@@ -95,9 +95,8 @@ function toggleEditTrending(checkbox) {
 }
 
 //  datepicker script 
-$( function() {
-    $( "#datepicker" ).datepicker();
-    $( "#format" ).on( "change", function() {
-    $( "#datepicker" ).datepicker( "option", "dateFormat", $( this ).val() );
+$(function() {
+    $("#datepicker").datepicker({
+        dateFormat: "DD, d MM, yy"
     });
-} );
+});

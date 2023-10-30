@@ -189,8 +189,9 @@
 
                     <div class="form-group col-md-6">
                     <label for="">Delivery Date</label>
-                    <input type="text" id="datepicker" size="30" class='form-control'>
+                    <input type="text" id="datepicker" size="30" class='form-control' name='delivery_date' value='{{ \Carbon\Carbon::parse($item->delivery_date)->format("l, d F, Y") }}'>
                     </div>
+                    
 
                 </div>
 

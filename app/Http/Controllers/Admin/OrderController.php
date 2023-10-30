@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Wishlist;
 use App\Models\OrderItem;
@@ -41,14 +42,30 @@ class OrderController extends Controller
     }
 
 
-    public function updateorder(Request $request, $orderitem){
 
+
+
+
+    public function updateorder(Request $request, $orderitem)
+    {
         $orderitem = OrderItem::findOrFail($orderitem);
         $orderitem->status = $request->input('order_status');
+    
+        // Format the delivery date
+        try {
+            $deliveryDate = Carbon::createFromFormat('l, d F, Y', $request->input('delivery_date'))->format('Y-m-d');
+            $orderitem->delivery_date = $deliveryDate;
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->withErrors(['delivery_date' => 'Invalid date format.']);
+        }
+    
         $orderitem->save();
-
+    
         return redirect('admin/order-view/'.$orderitem->id)->with('message', 'Order Status Updated');
     }
+    
+    
+    
 
 
 
