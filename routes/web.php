@@ -128,7 +128,8 @@ Route::prefix('admin')->middleware('auth', 'twofactor', 'isAdmin')->group(functi
         Route::get('/order-delivered', 'orderdelivered');
 
         Route::get('order-view/{orderitem}', 'view');
-        Route::put('order-update/{orderitem}', 'updateorder');
+        Route::post('order-update/{orderitem}', 'updateorder');
+        Route::put('order-updateDate/{orderitem}', 'updateDeliveryDate');
     });
 
     

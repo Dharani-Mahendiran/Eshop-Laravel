@@ -110,7 +110,7 @@
                                 <h4 class='m-0 d-flex align-items-center'>
                                     <i class='fa fa-download cursor-pointer text-success me-2' title="Download Invoice"></i>
                                     @if($item->product->trending == 1)
-                                        <span class='trending me-2'>Trending</span>
+                                        <span class='trending me-2'>#Trending</span>
                                     @endif
                         
                                     {{-- @if($wishlist->where('user_id', Auth::id())->where('product_id', $item->product->id)->count() > 0)
@@ -183,13 +183,13 @@
 
                     <form action="{{ url('admin/order-update/'.$item->id) }}" method="POST" id="updateForm">
                         @csrf
-                        @method('PUT')
+                        @method('POST')
                     
                         <div class='row col-12'>
                             <div class="form-group col-md-5">
                                 <label for="">Update Status</label>
                                 <select class="form-select" name="order_status" id="order_status" onclick="change_status()">
-                                    <option value="" {{ $item->status == 0 ? 'selected' : '' }}>Choose Status</option>
+                                    <option value=""  {{ $item->status == 0 ? 'selected' : '' }}>Choose Status</option>
                                     <option value="1" {{ $item->status == 1 ? 'selected' : '' }}>Item Dispatched</option>
                                     <option value="2" {{ $item->status == 2 ? 'selected' : '' }}>In Transit</option>
                                     <option value="3" {{ $item->status == 3 ? 'selected' : '' }}>Delivered</option>
@@ -215,7 +215,7 @@
             
 
                     <div class='form-group col-md-2 d-flex align-items-end justify-content-center'>
-                        <button class='btn btn-danger float-end'>Update</button>
+                        <button class='btn btn-danger float-end'>Save</button>
                     </div>
                 
                 </div>
@@ -223,11 +223,13 @@
                 </form>
 
 
-                <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white p-2 my-3 action-wrap">
+                <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white py-3 my-3 action-wrap">
                     <h5 class='m-0'>Edit Status</h5>
-                    <i class='mdi mdi-lead-pencil menu-icon mr-2'></i>
                 </div>
-
+                    
+                <form action="{{ url('admin/order-updateDate/'.$item->id) }}" method="POST" id="updateDateForm">
+                @csrf
+                @method('PUT')
                 <div class="row col-12">
                     <div class="form-group col-md-4">
                         <label for="">Placed On</label>
@@ -237,7 +239,7 @@
                     @if(in_array($item->status, [1, 2, 3])) 
                     <div class="form-group col-md-4">
                         <label for="">Dispacted On</label>
-                        <input type="text" size="30" class='datepicker form-control' name='edit_dispatched_dates' @if($item->dispatched_date != null)value='{{ \Carbon\Carbon::parse($item->dispatched_date)->format("l, d F, Y") }}' @endif>
+                        <input type="text" size="30" class='datepicker form-control' name='edit_dispatched_date' @if($item->dispatched_date != null)value='{{ \Carbon\Carbon::parse($item->dispatched_date)->format("l, d F, Y") }}' @endif>
                     </div>
                     @endif
 
@@ -254,34 +256,14 @@
                         <input type="text" size="30" class='datepicker form-control' name='edit_delivered_date' @if($item->delivered_date != null)value='{{ \Carbon\Carbon::parse($item->delivered_date)->format("l, d F, Y") }}' @endif>
                     </div>
                     @endif
+
+                    <div class='form-group col-md-12 float-end'>
+                        <button class='btn btn-primary float-end text-light'>Update</button>
+                    </div>
                 </div>
+                </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
+    
                 </div>
             </div>
 
@@ -293,6 +275,11 @@
         </div>
     </div>
 </div>
+
+
+
+
+
 
 @endsection
 

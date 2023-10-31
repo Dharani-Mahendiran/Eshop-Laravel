@@ -43,11 +43,6 @@ class OrderController extends Controller
     }
 
 
-
-
-
-
-   // Update the updateorder method in your controller
    public function updateorder(Request $request, $orderId)
     {
 
@@ -75,13 +70,24 @@ class OrderController extends Controller
 
 
 
+    public function updateDeliveryDate(Request $request, $orderId) {
+        $orderItem = OrderItem::findOrFail($orderId);
+    
 
+        $dispatchedDate = $orderItem->dispatched_date;
+        $inTransitDate = $orderItem->intransit_date;
+        $deliveredDate = $orderItem->delivered_date;
+    
 
-
-
-
-
-
+        $orderItem->dispatched_date = $request->has('edit_dispatched_date') ? Carbon::createFromFormat('l, d F, Y', $request->input('edit_dispatched_date'))->format('Y-m-d') : $dispatchedDate;
+        $orderItem->intransit_date = $request->has('edit_intransit_date') ? Carbon::createFromFormat('l, d F, Y', $request->input('edit_intransit_date'))->format('Y-m-d') : $inTransitDate;
+        $orderItem->delivered_date = $request->has('edit_delivered_date') ? Carbon::createFromFormat('l, d F, Y', $request->input('edit_delivered_date'))->format('Y-m-d') : $deliveredDate;
+    
+        $orderItem->update();
+    
+        return redirect('admin/order-view/'.$orderItem->id)->with('message', 'Order Status Updated Successfully');
+    }
+    
 
 
 } 

@@ -81,7 +81,9 @@
                 </div>
             </div>
     
+          
             <div class="col-md-7">
+                <div class="col-md-12">
                 <div class="card p-0">
                 <div class="card-header d-flex justify-content-between">
                 <h5>Order Details</h5>
@@ -165,11 +167,102 @@
                 </div>
     
             </div>
+
+            <div class="col-md-12 mt-lg-3">
+                <div class="card p-0">
+                    <div class="card-header d-flex justify-content-between">
+                        <h5>Order Status</h5>
+                    </div>
+                    <div class="card-body">
+                        
+                        <div class="progress">
+                            <div class="dot dot1"></div>
+                            <div class="dot dot2"></div>
+                            <div class="dot dot3"></div>
+                            <div class="dot dot4"></div>
+                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        
+                        <div class="steps">
+                            <div class="step-item active" id="orderPlaced">Order Placed
+                                <i class='d-block'>{{ \Carbon\Carbon::parse($item->created_at)->format("l, d F, Y") }}</i>
+                            </div>
+                            <div class="step-item" id="dispatched">Dispatched
+                                @if($item->dispatched_date != null)
+                                <i class='d-block'>
+                                {{ \Carbon\Carbon::parse($item->dispatched_date)->format("l, d F, Y") }}
+                                </i>
+                                @endif
+                            </div>
+                            <div class="step-item" id="inTransit">In Transit
+                                @if($item->intransit_date != null)
+                                <i class='d-block'>
+                                {{ \Carbon\Carbon::parse($item->intransit_date)->format("l, d F, Y") }}
+                                </i>
+                                @endif
+                            </div>
+                            <div class="step-item" id="delivered">Delivered
+                                @if($item->delivered_date != null)
+                                <i class='d-block'>
+                                {{ \Carbon\Carbon::parse($item->delivered_date)->format("l, d F, Y") }}
+                                </i>
+                                @endif
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+
+            </div>
+
+           
         
       
 
         </div>
     </div>
 </div>
+
+<script>
+    const item = { status: {{$item->status}} }; 
+    const progress = document.querySelector('.progress-bar');
+    const stepItems = document.querySelectorAll('.step-item');
+    const stepWidth = 100 / (stepItems.length - 1);
+    const progressWidth = (item.status * stepWidth);
+    
+    // progress.style.width = `${progressWidth}%`;
+
+    if (item.status === 0) {
+        progress.style.width = `13%`;
+    } else if (item.status === 1) {
+        progress.style.width = `38%`;
+    } else if (item.status === 2) {
+        progress.style.width = `63%`;
+    } else if (item.status === 3) {
+        progress.style.width = `100%`;
+    }
+
+    for (let i = 0; i <= item.status; i++) {
+        stepItems[i].classList.add('active');
+    }
+
+
+// Dot Position
+window.addEventListener('resize', positionDots);
+
+function positionDots() {
+    const stepItems = document.querySelectorAll('.step-item');
+    const dots = document.querySelectorAll('.dot');
+    
+    stepItems.forEach((step, index) => {
+        const stepPosition = step.offsetLeft + step.offsetWidth / 2;
+        dots[index].style.left = stepPosition + 'px';
+    });
+}
+
+positionDots();
+
+</script>
+
 
 @endsection

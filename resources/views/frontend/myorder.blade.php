@@ -38,16 +38,16 @@
             @elseif ($item->status == '1')
             <div class="d-flex align-items-center">
                 <h4 class='me-2'><i class='text-secondary'>Item Dispatched</i></h4>
-                @if($item->delivery_date != null)
-                <h6 class='m-0'><i class='text-secondary'> on {{ $item->created_at }} </i></h6>
+                @if($item->dispatched_date != null)
+                <h6 class='m-0'><i class='text-secondary'> on {{ $item->dispatched_date }} </i></h6>
                 @endif
             </div> 
             
             @elseif ($item->status == '2')
             <div class="d-flex align-items-center">
                 <h4 class='me-2'><i class='text-secondary'>In-Transit</i></h4>
-                @if($item->delivery_date != null)
-                <h6 class='m-0'><i class='text-secondary'> on {{ $item->created_at }} </i></h6>
+                @if($item->intransit_date != null)
+                <h6 class='m-0'><i class='text-secondary'> on {{ $item->intransit_date}} </i></h6>
                 @endif
             </div>
 
@@ -56,8 +56,8 @@
 
                 <div class="d-flex align-items-center">
                     <h4 class='me-2' ><i class='text-success d-block'>Delivered</i></h4>
-                    @if($item->delivery_date != null)
-                    <h6 class='m-0'><i class='text-success'> on {{ $item->created_at }} </i></h6>
+                    @if($item->delivered_date != null)
+                    <h6 class='m-0'><i class='text-success'> on {{ $item->delivered_date }} </i></h6>
                     @endif
                 </div> 
                     <span class='ratings'>
