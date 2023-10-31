@@ -26,14 +26,40 @@
                     <img class="card-img-top" src="{{ url('uploads/product/'.$item->product->image) }}" alt="Product image" width>
                 </i>
 
-                <div class='d-block'>
-                <h4 class="">{{ $item->product->name }}</h4>
+            <div class='d-block'>
+            <h4 class="">{{ $item->product->name }}</h4>
 
-                @if ($item->status == '0')
-                <i class='text-danger'>Delivery by </i>
-                @else
+            @if ($item->status == '0')
+            <div class="d-flex align-items-center">
+                <h4 class='me-2'><i class='text-secondary'>Order Placed </i></h4>
+                <h6 class='m-0'><i class='text-secondary'> on {{ $item->created_at }} </i></h6>
+            </div> 
 
-                    <i class='text-success d-block'>Delivered</i>
+            @elseif ($item->status == '1')
+            <div class="d-flex align-items-center">
+                <h4 class='me-2'><i class='text-secondary'>Item Dispatched</i></h4>
+                @if($item->delivery_date != null)
+                <h6 class='m-0'><i class='text-secondary'> on {{ $item->created_at }} </i></h6>
+                @endif
+            </div> 
+            
+            @elseif ($item->status == '2')
+            <div class="d-flex align-items-center">
+                <h4 class='me-2'><i class='text-secondary'>In-Transit</i></h4>
+                @if($item->delivery_date != null)
+                <h6 class='m-0'><i class='text-secondary'> on {{ $item->created_at }} </i></h6>
+                @endif
+            </div>
+
+
+            @elseif ($item->status == '3')
+
+                <div class="d-flex align-items-center">
+                    <h4 class='me-2' ><i class='text-success d-block'>Delivered</i></h4>
+                    @if($item->delivery_date != null)
+                    <h6 class='m-0'><i class='text-success'> on {{ $item->created_at }} </i></h6>
+                    @endif
+                </div> 
                     <span class='ratings'>
                         <i class='text-warning wrap'>Rate Product</i>
                         <ul>

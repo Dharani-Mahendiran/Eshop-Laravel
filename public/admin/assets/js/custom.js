@@ -93,10 +93,29 @@ function toggleEditTrending(checkbox) {
         span.classList.add('text-info');
     }
 }
+// order status change
+function change_status() {
+    var status = document.getElementById('order_status').value;
+    var dispatch = document.querySelector('.dispatch');
+    var intransit = document.querySelector('.intransit');
+    var delivery = document.querySelector('.delivery');
+
+    dispatch.style.display = 'none';
+    intransit.style.display = 'none';
+    delivery.style.display = 'none';
+
+    if (status === '1') {
+        dispatch.style.display = 'block';
+    } else if (status === '2') {
+        intransit.style.display = 'block';
+    } else if (status === '3') {
+        delivery.style.display = 'block';
+    }
+}
 
 //  datepicker script 
 $(function() {
-    $("#datepicker").datepicker({
+    $(".datepicker").datepicker({
         dateFormat: "DD, d MM, yy"
     });
 });

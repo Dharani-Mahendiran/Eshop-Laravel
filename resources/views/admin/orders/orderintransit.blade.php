@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title') Orders @endsection
+@section('title') In-TransitOrders @endsection
 @section('content')
 
 
@@ -8,10 +8,14 @@
     <div class="col-md-12">
 
         <div class="card">
-            <div class="card-header">
-                <h4 class='d-flex align-items-center justify-content-between'>Delivered Orders
-                    <a href="{{url('admin/orders')}}" class='btn btn-sm btn-danger  text-light'>Go Back</a>
-                </h4>
+            <div class="card-header d-md-flex align-items-center justify-content-between d-block">
+                <h4 class='m-0'>Order In-Transit</h4>
+                <div class='my-2 my-md-0'>
+                    <a href="{{url('admin/orders')}}" class='btn btn-sm btn-success text-light'>New Orders</a>
+                    <a href="{{url('admin/order-packed')}}" class='btn btn-sm bg-info text-light mr-2'>Dispatched</a>
+                    {{-- <a href="{{url('admin/order-intransit')}}" class='btn btn-sm bg-warning  text-light mr-2'>In transit</a> --}}
+                    <a href="{{url('admin/order-delivered')}}" class='btn btn-sm bg-danger text-light'>Delivered</a>
+                </div>
             </div>
             <div class="card-body">
 
@@ -44,7 +48,7 @@
                                 @if($item->status=='0')
                                     Order Placed
                                 @elseif($item->status=='1')
-                                    Item Packed
+                                    Item Dispatched
                                 @elseif($item->status=='2')
                                     In Transit
                                 @elseif($item->status=='3')

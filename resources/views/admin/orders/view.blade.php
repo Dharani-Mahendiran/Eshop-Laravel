@@ -6,7 +6,7 @@
 
 <div class="breadcrumb d-md-flex justify-content-between align-items-center d-block">
     <h4 class='mb-3 mb-md-0'>Order/{{ $item->product->name }}</h4>
-    <button class='goBk-btn'>Go Back</button>
+    <a href="{{url('admin/orders')}}" class='btn btn-sm btn-danger  text-light'>Go Back</a>
 </div>
 
 <div class="section-bg productData theme-bg p-lg-5 p-md-3 py-2">
@@ -164,40 +164,123 @@
             </div>
             <div class="col-md-12 mt-lg-3">
                 <div class="card p-0">
-                <div class="card-header d-flex justify-content-between bg-danger text-white">
-                    <h5>Update Status</h5>
+                <div class="card-header d-flex justify-content-between align-items-center bg-danger text-white">
+                    <h5 class='m-0'>Update Status</h5>
+                    
+                    @if($item->status == 0)
+                    <h5 class='bg-success m-0 p-2'>Order Placed</h5>
+                    @elseif($item->status == 1)
+                    <h5 class='bg-info m-0 p-2'>Item Dispatched</h5>
+                    @elseif($item->status == 2)
+                    <h5 class='bg-warning m-0 p-2'>In Transit</h5>
+                    @elseif($item->status == 3)
+                    <h5 class='bg-success m-0 p-2'>Delivered</h5>
+                    @endif
+
                 </div>
                 <div class="card-body">
                     
 
-                <form action="{{ url('admin/order-update/'.$item->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-
-
-                <div class='row col-12'>
-
-                    <div class="form-group col-md-6">
-                    <label for="">Choose Status</label>
-                    <select class="form-select" name="order_status">
-                        <option value="0" {{ $item->status == 0 ? 'selected' : '' }}>Order Placed</option>
-                        <option value="1" {{ $item->status == 1 ? 'selected' : '' }}>Item Packed</option>
-                        <option value="2" {{ $item->status == 2 ? 'selected' : '' }}>In Transit</option>
-                        <option value="3" {{ $item->status == 3 ? 'selected' : '' }}>Delivered</option>
-                    </select>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                    <label for="">Delivery Date</label>
-                    <input type="text" id="datepicker" size="30" class='form-control' name='delivery_date' value='{{ \Carbon\Carbon::parse($item->delivery_date)->format("l, d F, Y") }}'>
-                    </div>
+                    <form action="{{ url('admin/order-update/'.$item->id) }}" method="POST" id="updateForm">
+                        @csrf
+                        @method('PUT')
                     
+                        <div class='row col-12'>
+                            <div class="form-group col-md-5">
+                                <label for="">Update Status</label>
+                                <select class="form-select" name="order_status" id="order_status" onclick="change_status()">
+                                    <option value="" {{ $item->status == 0 ? 'selected' : '' }}>Choose Status</option>
+                                    <option value="1" {{ $item->status == 1 ? 'selected' : '' }}>Item Dispatched</option>
+                                    <option value="2" {{ $item->status == 2 ? 'selected' : '' }}>In Transit</option>
+                                    <option value="3" {{ $item->status == 3 ? 'selected' : '' }}>Delivered</option>
+                                </select>
+                            </div>
+                    
+                            
+                                <div class='dispatch form-group col-md-5' style="display: none;">
+                                    <label for="">Dispatch Date</label>
+                                    <input type="text" size="30" class='datepicker form-control' name='dispatched_date' @if($item->dispatched_date != null)value='{{ \Carbon\Carbon::parse($item->dispatched_date)->format("l, d F, Y") }}' @endif>
+                                </div>
+                    
+                                <div class='intransit form-group col-md-5' style="display: none;">
+                                    <label for="">In-Transit Date</label>
+                                    <input type="text" size="30" class='datepicker form-control' name='intransit_date' @if($item->intransit_date != null)value='{{ \Carbon\Carbon::parse($item->intransit_date)->format("l, d F, Y") }}' @endif>
+                                </div>
+                    
+                                <div class='delivery form-group col-md-5' style="display: none;">
+                                    <label for="">Delivery Date</label>
+                                    <input type="text" size="30" class='datepicker form-control' name='delivered_date' @if($item->delivered_date != null)value='{{ \Carbon\Carbon::parse($item->delivered_date)->format("l, d F, Y") }}' @endif>
+                                </div>
+                           
+            
 
+                    <div class='form-group col-md-2 d-flex align-items-end justify-content-center'>
+                        <button class='btn btn-danger float-end'>Update</button>
+                    </div>
+                
+                </div>
+                    
+                </form>
+
+
+                <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white p-2 my-3 action-wrap">
+                    <h5 class='m-0'>Edit Status</h5>
+                    <i class='mdi mdi-lead-pencil menu-icon mr-2'></i>
                 </div>
 
-                    <button class='btn btn-danger mt-3 float-end'>Update</button>
+                <div class="row col-12">
+                    <div class="form-group col-md-4">
+                        <label for="">Placed On</label>
+                        <h6 class='form-control'>{{ \Carbon\Carbon::parse($item->created_at)->format("l, d F, Y") }}</h6>
+                    </div>
 
-                </form>
+                    @if(in_array($item->status, [1, 2, 3])) 
+                    <div class="form-group col-md-4">
+                        <label for="">Dispacted On</label>
+                        <input type="text" size="30" class='datepicker form-control' name='edit_dispatched_dates' @if($item->dispatched_date != null)value='{{ \Carbon\Carbon::parse($item->dispatched_date)->format("l, d F, Y") }}' @endif>
+                    </div>
+                    @endif
+
+                    @if(in_array($item->status, [2, 3])) 
+                    <div class="form-group col-md-4">
+                        <label for="">In-Transit On</label>
+                        <input type="text" size="30" class='datepicker form-control' name='edit_intransit_date' @if($item->intransit_date != null)value='{{ \Carbon\Carbon::parse($item->intransit_date)->format("l, d F, Y") }}' @endif>
+                    </div>
+                    @endif
+
+                    @if($item->status == 3)
+                    <div class="form-group col-md-4">
+                        <label for="">Delivered On</label>
+                        <input type="text" size="30" class='datepicker form-control' name='edit_delivered_date' @if($item->delivered_date != null)value='{{ \Carbon\Carbon::parse($item->delivered_date)->format("l, d F, Y") }}' @endif>
+                    </div>
+                    @endif
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     
                 </div>
             </div>
@@ -212,4 +295,5 @@
 </div>
 
 @endsection
+
 

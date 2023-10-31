@@ -9,6 +9,7 @@ use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Exceptions\InvalidFormatException;
 
 class OrderController extends Controller
 {
@@ -46,26 +47,31 @@ class OrderController extends Controller
 
 
 
-    public function updateorder(Request $request, $orderitem)
+   // Update the updateorder method in your controller
+   public function updateorder(Request $request, $orderId)
     {
-        $orderitem = OrderItem::findOrFail($orderitem);
-        $orderitem->status = $request->input('order_status');
-    
-        // Format the delivery date
-        try {
-            $deliveryDate = Carbon::createFromFormat('l, d F, Y', $request->input('delivery_date'))->format('Y-m-d');
-            $orderitem->delivery_date = $deliveryDate;
-        } catch (\Exception $e) {
-            return redirect()->back()->withInput()->withErrors(['delivery_date' => 'Invalid date format.']);
+
+    try {
+        $orderItem = OrderItem::findOrFail($orderId);
+        $orderItem->status = $request->input('order_status');
+        if ($orderItem->status == 1) {
+            $orderItem->dispatched_date = $request->has('dispatched_date') ? Carbon::createFromFormat('l, d F, Y', $request->input('dispatched_date'))->format('Y-m-d') : null;
+        } elseif ($orderItem->status == 2) {
+            $orderItem->intransit_date = $request->has('intransit_date') ? Carbon::createFromFormat('l, d F, Y', $request->input('intransit_date'))->format('Y-m-d') : null;
+        } elseif ($orderItem->status == 3) {
+            $orderItem->delivered_date = $request->has('delivered_date') ? Carbon::createFromFormat('l, d F, Y', $request->input('delivered_date'))->format('Y-m-d') : null;
         }
-    
-        $orderitem->save();
-    
-        return redirect('admin/order-view/'.$orderitem->id)->with('message', 'Order Status Updated');
+
+        $orderItem->save();
+        return redirect('admin/order-view/'.$orderItem->id)->with('message', 'Order Status Updated');
+    } catch (InvalidFormatException $e) {
+        return redirect()->back()->withInput()->withErrors(['error' => 'Invalid date format: ' . $e->getMessage()]);
+    } catch (\Exception $e) {
+        // Log any other exceptions here for debugging
+        return redirect()->back()->withInput()->withErrors(['error' => 'An error occurred while updating the order: ' . $e->getMessage()]);
     }
-    
-    
-    
+
+    }
 
 
 

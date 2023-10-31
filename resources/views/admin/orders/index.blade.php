@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title') Orders @endsection
+@section('title') New Orders @endsection
 @section('content')
 
 
@@ -12,7 +12,7 @@
                 <h4 class='m-0'>New Orders</h4>
 
                 <div class='my-2 my-md-0'>
-                    <a href="{{url('admin/order-packed')}}" class='btn btn-sm bg-info text-light mr-2'>Packed</a>
+                    <a href="{{url('admin/order-packed')}}" class='btn btn-sm bg-info text-light mr-2'>Dispatched</a>
                     <a href="{{url('admin/order-intransit')}}" class='btn btn-sm bg-warning  text-light mr-2'>In transit</a>
                     <a href="{{url('admin/order-delivered')}}" class='btn btn-sm bg-danger text-light'>Delivered</a>
                 </div>
@@ -50,7 +50,7 @@
                                 @if($item->status=='0')
                                     Order Placed
                                 @elseif($item->status=='1')
-                                    Item Packed
+                                    Item Dispatched
                                 @elseif($item->status=='2')
                                     In Transit
                                 @elseif($item->status=='3')
