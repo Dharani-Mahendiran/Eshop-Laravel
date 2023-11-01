@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title') Edit Product @endsection
 @section('content')
 
 

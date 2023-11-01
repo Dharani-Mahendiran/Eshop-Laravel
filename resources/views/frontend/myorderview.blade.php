@@ -14,7 +14,7 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-md-5">
+            <div class="col-md-5 mt-3 mt-md-0">
                 <div class="card p-0">
                     <div class="card-header">
                         <h5>Basic Details</h5>
@@ -82,7 +82,7 @@
             </div>
     
           
-            <div class="col-md-7">
+            <div class="col-md-7 mt-3 mt-md-0">
                 <div class="col-md-12">
                 <div class="card p-0">
                 <div class="card-header d-flex justify-content-between">
@@ -168,10 +168,11 @@
     
             </div>
 
-            <div class="col-md-12 mt-lg-3">
+            <div class="col-md-12 my-3">
                 <div class="card p-0">
-                    <div class="card-header d-flex justify-content-between">
+                    <div class="card-header d-block d-md-flex justify-content-between">
                         <h5>Order Status</h5>
+                        <i>Last Updated {{ $item->updated_at }}</i>
                     </div>
                     <div class="card-body desk-view">
                         

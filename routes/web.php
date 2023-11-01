@@ -114,11 +114,6 @@ Route::prefix('admin')->middleware('auth', 'twofactor', 'isAdmin')->group(functi
         Route::get('/product/del-product/{product}','destroy');
     });
 
-     // User routes
-     Route::controller( FrontEndController::class)->group(function(){
-        Route::get('/users', 'users');
-
-    });
 
     //order routes
       Route::controller(OrderController::class)->group(function(){
@@ -132,6 +127,12 @@ Route::prefix('admin')->middleware('auth', 'twofactor', 'isAdmin')->group(functi
         Route::put('order-updateDate/{orderitem}', 'updateDeliveryDate');
     });
 
+
+    // User routes
+        Route::controller( DashboardController::class)->group(function(){
+        Route::get('/users', 'users');
+    });
+    
     
 
 
