@@ -173,7 +173,7 @@
                     <div class="card-header d-flex justify-content-between">
                         <h5>Order Status</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body desk-view">
                         
                         <div class="progress">
                             <div class="dot dot1"></div>
@@ -211,6 +211,47 @@
                         </div>
 
                     </div>
+
+
+            <div class="card-body mbl-view">
+            <ul class="mbl-view">
+                <li class="progress__item progress__item--completed" id='order_placed'>
+                <p class="progress__title">Order Placed
+                    <i class='d-block'>{{ \Carbon\Carbon::parse($item->created_at)->format("l, d F, Y") }}</i></p>
+                </li>
+
+                <li class="progress__item " id='order_dispatched'>
+                <p class="progress__title">Dispatched
+                    @if($item->dispatched_date != null)
+                    <i class='d-block'>
+                    {{ \Carbon\Carbon::parse($item->dispatched_date)->format("l, d F, Y") }}
+                    </i>
+                    @endif</p>
+                </li>
+
+                <li class="progress__item" id='order_intransit'>
+                <p class="progress__title">In Transit
+                    @if($item->intransit_date != null)
+                    <i class='d-block'>
+                    {{ \Carbon\Carbon::parse($item->intransit_date)->format("l, d F, Y") }}
+                    </i>
+                    @endif</p>
+                </li>
+
+                <li class="progress__item" id='order_delivered'>
+                <p class="progress__title">Delivered
+                    @if($item->delivered_date != null)
+                    <i class='d-block'>
+                    {{ \Carbon\Carbon::parse($item->delivered_date)->format("l, d F, Y") }}
+                    </i>
+                    @endif</p>
+                </li>
+
+            </ul>
+
+            </div>
+
+
             </div>
 
             </div>
@@ -261,6 +302,29 @@ function positionDots() {
 }
 
 positionDots();
+
+// for mobile view track order status
+const itemStatus = item.status;
+const placed = document.getElementById('order_placed');
+const dispatched = document.getElementById('order_dispatched');
+const inTransit = document.getElementById('order_intransit');
+const delivered = document.getElementById('order_delivered');
+
+if (itemStatus === 0) {
+  placed.classList.add('progress__item--completed');
+} else if (itemStatus === 1) {
+  placed.classList.add('progress__item--completed');
+  dispatched.classList.add('progress__item--completed');
+} else if (itemStatus === 2) {
+  placed.classList.add('progress__item--completed');
+  dispatched.classList.add('progress__item--completed');
+  inTransit.classList.add('progress__item--completed');
+} else if (itemStatus === 3) {
+  placed.classList.add('progress__item--completed');
+  dispatched.classList.add('progress__item--completed');
+  inTransit.classList.add('progress__item--completed');
+  delivered.classList.add('progress__item--completed');
+}
 
 </script>
 
