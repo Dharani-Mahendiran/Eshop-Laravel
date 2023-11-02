@@ -62,7 +62,6 @@ class ProductController extends Controller
         return redirect('admin/product')->with('message', 'Product Added Successfully');
     }
 
-
        
     public function edit(Product $product){
         $categories = Category::all();

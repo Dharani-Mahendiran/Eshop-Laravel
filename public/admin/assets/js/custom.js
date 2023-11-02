@@ -119,3 +119,165 @@ $(function() {
         dateFormat: "DD, d MM, yy"
     });
 });
+
+
+// create user form validation
+function save_user() {
+  // Remove all existing error messages
+  $(".text-danger").text("");
+
+  // Track whether there are validation errors
+  let hasError = false;
+
+$(".save_user").each(function () {
+  const name = $("input[name='name']").val();
+  if (name === "") {
+      $("#name-error").text("First Name is required");
+      hasError = true;
+  } else if (!/^[a-zA-Z]+$/.test(name)) {
+      $("#name-error").text("Only letters allowed");
+      hasError = true;
+  }
+
+const lname = $("input[name='lname']").val();
+if (lname === "") {
+  $("#lname-error").text("Last Name is required");
+    hasError = true;
+}else if (!/^[a-zA-Z]+$/.test(lname)) {
+  $("#lname-error").text("Only letters alowed");
+  hasError = true;
+}
+
+function isValidEmail(email) {
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  return emailRegex.test(email);
+}
+
+const email = $("input[name='email']").val();
+if (email === "") {
+  $("#email-error").text("Email is required");
+    hasError = true;
+}else if (!isValidEmail(email)) {
+  $("#email-error").text("Enter a valid email address");
+  hasError = true;
+}
+
+
+function isValidPhoneNumber(phoneNumber) {
+    const phoneRegex = /^(\d{10})$/;
+
+  return phoneRegex.test(phoneNumber);
+}
+const contact = $("input[name='phone']").val();
+if (contact === "") {
+  $("#contact-error").text("contact is required");
+    hasError = true;
+}else if (!isValidPhoneNumber(contact)) {
+  $("#contact-error").text("Enter valid phone number");
+    hasError = true;
+}
+
+const role = $("select[name='role_as']").val();
+if (!role) {
+  $("#role-error").text("Select Role");
+  hasError = true;
+}
+
+
+const password = $("input[name='password']").val();
+if (password === "") {
+  $("#password-error").text("Enter Password");
+    hasError = true;
+} else if (!(password.length >= 8)) {
+  $("#password-error").text("The password must be at least 8 characters");
+    hasError = true;
+}
+
+
+// If there are any errors, prevent form submission
+if (hasError) {
+  return;
+}
+
+// If there are no errors, submit the form
+$(".CreateUserForm").submit();
+});
+}
+
+// Update User
+function update_user() {
+    // Remove all existing error messages
+    $(".text-danger").text("");
+  
+    // Track whether there are validation errors
+    let hasError = false;
+  
+  $(".update_user").each(function () {
+    const name = $("input[name='name']").val();
+    if (name === "") {
+        $("#name-error").text("First Name is required");
+        hasError = true;
+    } else if (!/^[a-zA-Z]+$/.test(name)) {
+        $("#name-error").text("Only letters allowed");
+        hasError = true;
+    }
+  
+  const lname = $("input[name='lname']").val();
+  if (lname === "") {
+    $("#lname-error").text("Last Name is required");
+      hasError = true;
+  }else if (!/^[a-zA-Z]+$/.test(lname)) {
+    $("#lname-error").text("Only letters alowed");
+    hasError = true;
+  }
+  
+  function isValidEmail(email) {
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    return emailRegex.test(email);
+  }
+  
+  const email = $("input[name='email']").val();
+  if (email === "") {
+    $("#email-error").text("Email is required");
+      hasError = true;
+  }else if (!isValidEmail(email)) {
+    $("#email-error").text("Enter a valid email address");
+    hasError = true;
+  }
+  
+  
+  function isValidPhoneNumber(phoneNumber) {
+      const phoneRegex = /^(\d{10})$/;
+  
+    return phoneRegex.test(phoneNumber);
+  }
+  const contact = $("input[name='phone']").val();
+  if (contact === "") {
+    $("#contact-error").text("contact is required");
+      hasError = true;
+  }else if (!isValidPhoneNumber(contact)) {
+    $("#contact-error").text("Enter valid phone number");
+      hasError = true;
+  }
+  
+  const password = $("input[name='password']").val();
+  if (password === "") {
+    $("#password-error").text("Enter Password");
+      hasError = true;
+  } else if (!(password.length >= 8)) {
+    $("#password-error").text("The password must be at least 8 characters");
+      hasError = true;
+  }
+  
+  
+  // If there are any errors, prevent form submission
+  if (hasError) {
+    return;
+  }
+  
+  // If there are no errors, submit the form
+  $(".UpdateUserForm").submit();
+  });
+  }
+  
+  

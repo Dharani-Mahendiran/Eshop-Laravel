@@ -32,6 +32,16 @@ class User extends Authenticatable
         'two_factor_expires_at',
     ];
 
+    protected $attributes = [
+            'lname' => '',
+            'phone' => '',
+            'address' => '',
+            'city' =>  '',
+            'state' => '',
+            'country'=>  '',
+            'pincode' =>  '000000',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
