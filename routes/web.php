@@ -135,9 +135,10 @@ Route::prefix('admin')->middleware('auth', 'twofactor', 'isAdmin')->group(functi
 
         Route::get('/create/user', 'create_user');
         Route::post('/users', 'store_user');
+        Route::get('/user/view/{user}', 'view_user');
         Route::get('/user/edit/{user}', 'edit_user');
         Route::put('/user/{user}', 'update_user');
-
+        Route::get('/user/remove-user/{user}', 'remove_user');
 
     });
     

@@ -40,6 +40,7 @@ class User extends Authenticatable
             'state' => '',
             'country'=>  '',
             'pincode' =>  '000000',
+            'has_deleted' => '0',
     ];
 
     /**

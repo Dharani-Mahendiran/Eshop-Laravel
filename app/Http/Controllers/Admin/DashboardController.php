@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 
 class DashboardController extends Controller
 {
@@ -14,16 +16,15 @@ class DashboardController extends Controller
 
     
     public function users(){
-        $users = User::where('role_as', '0')->get();
-        return view ('admin.users.index', compact('users'));
+        $users = User::where(['role_as' => '0', 'has_deleted' => '0'])->get();
+        return view('admin.users.index', compact('users'));
     }
-
-
+    
     public function adminProfiles(){
-        $users = User::where('role_as', '1')->get();
-        return view ('admin.users.admin.index', compact('users'));
+        $users = User::where(['role_as' => '1', 'has_deleted' => '0'])->get();
+        return view('admin.users.admin.index', compact('users'));
     }
-
+    
 
     public function create_user(){
 
@@ -39,7 +40,11 @@ class DashboardController extends Controller
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
         $user->alt_contact = $request->input('alt_contact');
-        $user->password = $request->input('password');
+
+        $password = $request->input('password');
+        $hashedPassword = Hash::make($password);
+        $user->password = $hashedPassword;
+        
         $user->role_as = $request->input('role_as');
         $user->save();
 
@@ -54,14 +59,17 @@ class DashboardController extends Controller
         }
     }
 
+    public function view_user(User $user){
+        $user = User::where('id', $user->id)->first();
+        return view('admin.users.admin.view', compact('user'));
+    }
+
 
     public function edit_user(User $user){
 
             $user = User::where('id', $user->id)->first();
             return view('admin.users.admin.edit', compact('user'));
     }
-
-
 
 
 
@@ -83,6 +91,14 @@ class DashboardController extends Controller
 
     }
 
+    public function remove_user($user){
+        
+        $user = User::findOrFail($user);
+        $user->has_deleted = '1';
+        $user->update();
+        return redirect('admin/profiles')->with('message', 'Admin Profile Removed');
+    }
+    
 
 
 }

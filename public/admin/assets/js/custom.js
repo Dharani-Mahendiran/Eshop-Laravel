@@ -280,4 +280,15 @@ function update_user() {
   });
   }
   
-  
+// Toggle Password
+  function togglePassword() {
+    var x = document.getElementById("password_field");
+    var y = document.getElementById("toggle_password_button");
+    if (x.type === "password") {
+        x.type = "text";
+        y.innerHTML = '<i class="mdi mdi-eye" aria-hidden="true"></i>';
+    } else {
+        x.type = "password";
+        y.innerHTML = '<i class="mdi mdi-eye-off" aria-hidden="true"></i>';
+    }
+}  
