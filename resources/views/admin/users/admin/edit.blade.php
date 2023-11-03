@@ -48,10 +48,17 @@
                                 <input id="alt_contact" type="number" class="form-control" name="alt_contact" value="{{ $user->alt_contact }}">
                                 </div>
 
+
                                 <div class="col-md-6 mb-3">
-                                <label for="password" class="">Edit Password</label>
-                                <input id="password" type="password" class="form-control" name="password" value='{{ $user->password }}'>
-                                <span id="password-error" class='text-danger'></span>
+                                    <label for="password" class="">Change Password</label>
+                                    <div class="input-group" id="show_hide_password">
+                                        <input type="hidden" class="form-control" name="password" value='{{ $user->password }}'>
+                                        <input type="password" class="form-control" name="new-password" id="password_field" >
+                                        <div class="input-group-addon">
+                                            <button onclick="togglePassword()" type="button" class="btn btn-default" id="toggle_password_button"><i class="mdi mdi-eye-off" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div> 
+                                    <span id="password-error" class='text-danger'></span>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
@@ -61,7 +68,7 @@
 
                     
                                 <div class="col-12">
-                                <button type='button' class="btn btn-primary text-light float-end update_user" onclick="update_user()">Create</button>
+                                <button type='button' class="btn btn-primary text-light float-end update_user" onclick="update_user()">Update</button>
                                 </div>
 
                             </div>

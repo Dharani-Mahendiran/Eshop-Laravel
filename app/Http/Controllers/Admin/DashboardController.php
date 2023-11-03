@@ -94,7 +94,18 @@ class DashboardController extends Controller
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
         $user->alt_contact = $request->input('alt_contact');
-        $user->password = $request->input('password');
+
+        if ($request->input('new-password') != ''){
+            $password = $request->input('new_password');
+            $hashedPassword = Hash::make($password);
+            $user->password = $hashedPassword;
+        }
+        else{
+            $user->password = $request->input('password');
+        }
+       
+
+     
 
         $user->Update();
 

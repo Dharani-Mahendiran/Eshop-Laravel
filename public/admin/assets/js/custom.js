@@ -268,6 +268,15 @@ function update_user() {
     $("#password-error").text("The password must be at least 8 characters");
       hasError = true;
   }
+
+const new_password = $("input[name='new-password']").val();
+if (new_password !== ""){
+  if (!(new_password.length >= 8)) {
+    $("#password-error").text("The password must be at least 8 characters");
+      hasError = true;
+  }
+}
+
   
   
   // If there are any errors, prevent form submission
