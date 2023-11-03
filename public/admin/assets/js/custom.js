@@ -292,3 +292,8 @@ function update_user() {
         y.innerHTML = '<i class="mdi mdi-eye-off" aria-hidden="true"></i>';
     }
 }  
+
+// go back functionality
+function goBack() {
+  window.history.back();
+}

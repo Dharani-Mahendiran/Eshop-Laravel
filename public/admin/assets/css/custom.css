@@ -310,12 +310,74 @@
 .theme-bg {
   background: #0A2640;
   border: 2px solid #0A2640;
-  color: #0A2640;
+  color: #fff;
 }
 
 
 .ui-widget.ui-widget-content{
   width: 350px;
+}
+/* user order view ui */
+.myorder .card-body{
+  display:flex;
+}
+
+.myorder i.card-img{
+   background-color: #FFFFFF;
+   width: 100px;
+   height: 100px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.myorder i.card-img img {
+   width: 100px;
+   height: 100px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 10px;
+}
+
+.myorder .card-body .col-md-12{
+   display: flex;
+   align-items: center;
+   position: relative;
+   padding: 0;
+}
+
+.myorder .card-body i.mdi-chevron-right{
+   position: absolute;
+   right: 10px;
+   font-size:35px;
+   color: #0A2640;
+}
+
+.text-decoration-none{
+ color: unset;
+}
+
+.ratings{
+   display: flex;
+}
+
+.ratings i.wrap{
+   margin-right: 10px;
+}
+
+.ratings ul{
+   list-style: none;
+   display: flex;
+   padding: 0;
+}
+
+.goBk-btn{
+   background-color: #dc3545;
+   color: #fff;
+   border-radius: 6px;
+   border: none;
+   padding: 5px 10px;
 }
 
 
@@ -327,7 +389,6 @@
     max-width: 80%;
   }
 }
-
 
 
 @media (max-width:1281.98px){
@@ -394,6 +455,23 @@
   .orderview  h4.text-end b {
     font-size: 25px;
   }
+
+  /* user order view */
+  .myorder .card-body i.mdi-chevron-right{
+    right: 0px;
+    font-size: 12px;
+  }
+  .myorder .card-body h4 {
+    font-size: 13px;
+  }
+  
+  .myorder i.card-img img,
+  .myorder i.card-img  {
+    width: 70px;
+    height: 70px;
+  }
+  
 }
 
 /* end of two factor ui responsive*/
+

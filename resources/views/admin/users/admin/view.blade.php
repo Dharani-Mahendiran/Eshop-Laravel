@@ -1,18 +1,29 @@
 @extends('layouts.admin')
-@section('title')View Admin Profile @endsection
-
+@section('title')
+@if ($user->role_as == 0)
+User Profile
+@elseif ($user->role_as == 1)
+Admin Profile
+@endif
+@endsection
+@section('body_class', 'myorder')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-12 p-0">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="d-flex align-items-center justify-content-between mb-0">View Admin Profile
+                <div class="card-header theme-bg">
+                    <h4 class="d-flex align-items-center justify-content-between mb-0">
+                         @if ($user->role_as == 0)
+                             User Profile
+                         @elseif ($user->role_as == 1)
+                             Admin Profile
+                         @endif
                         <a href="{{ url('admin/profiles') }}" class="btn btn-sm btn-danger text-light">Go Back</a>
                     </h4>
                 </div>
 
-                    <div class="card-body">
+                    <div class="card-body d-block">
                         <form>
                         
                             <div class="row col-12">
@@ -66,11 +77,129 @@
                         </form>
                     </div>
 
-                </div>
             </div>
         </div>
+
+
+
+    @if($user->role_as == 0)
+
+    <div class="card p-0">
+  
+        <div class="card-header theme-bg">
+            <h3>Orders</h3>
+        </div>
+        @if(count($orders) > 0)
+        @foreach ($orders  as $order)
+            @foreach ($orderItems[$order->id] as $item)
+        
+        
+            <a href="{{ url('admin/order-view/'.$item->id) }}" class='text-decoration-none cursor-pointer'>
+                <div class="card-body row m-0 p-2">
+                    <div class='col-md-12' >
+                        {{-- <i>{{ $order->id }}</i> --}}
+                        <i class='card-img'>
+                            <img class="card-img-top" src="{{ url('uploads/product/'.$item->product->image) }}" alt="Product image" width>
+                        </i>
+        
+                    <div class='d-block'>
+                    <h4 class="">{{ $item->product->name }}</h4>
+        
+                    @if ($item->status == '0')
+                    <div class="d-flex align-items-center">
+                        <h4 class='me-2'><i class='text-secondary'>Order Placed </i></h4>
+                        <h6 class='m-0'><i class='text-secondary'> on {{ $item->created_at }} </i></h6>
+                    </div> 
+        
+                    @elseif ($item->status == '1')
+                    <div class="d-flex align-items-center">
+                        <h4 class='me-2'><i class='text-secondary'>Item Dispatched</i></h4>
+                        @if($item->dispatched_date != null)
+                        <h6 class='m-0'><i class='text-secondary'> on {{ $item->dispatched_date }} </i></h6>
+                        @endif
+                    </div> 
+                    
+                    @elseif ($item->status == '2')
+                    <div class="d-flex align-items-center">
+                        <h4 class='me-2'><i class='text-secondary'>In-Transit</i></h4>
+                        @if($item->intransit_date != null)
+                        <h6 class='m-0'><i class='text-secondary'> on {{ $item->intransit_date}} </i></h6>
+                        @endif
+                    </div>
+        
+        
+                    @elseif ($item->status == '3')
+        
+                        <div class="d-flex align-items-center">
+                            <h4 class='me-2' ><i class='text-success d-block'>Delivered</i></h4>
+                            @if($item->delivered_date != null)
+                            <h6 class='m-0'><i class='text-success'> on {{ $item->delivered_date }} </i></h6>
+                            @endif
+                        </div> 
+                            <span class='ratings'>
+                                <i class='text-warning wrap'>Product Ratings</i>
+                                <ul>
+                                    <li><i class='mdi mdi-star'></i></li>
+                                    <li><i class='mdi mdi-star'></i></li>
+                                    <li><i class='mdi mdi-star'></i></li>
+                                    <li><i class='mdi mdi-star'></i></li>
+                                    <li><i class='mdi mdi-star'></i></li>
+                                </ul>
+                            </span>
+                        
+                        @endif
+                        
+        
+                        </div>
+        
+        
+                            <i class="mdi mdi-chevron-right" title="View Order"></i>
+                      
+        
+                    </div>
+                </div>
+            </a>
+        
+                <hr class="wrap m-0">
+            @endforeach
+        @endforeach
+        
+        
+        
+        @else
+        
+                <div class="card-body d-block">
+        
+                    <h4 class='text-danger text-center m-4'><i class="fa fa-shopping-cart"></i> 
+                        No Orders Yet!
+                    </h4>
+
+                </div>
+        @endif
+        
+        
+        
+        </div>
+
+
+
+    @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
-</div>
 </div>
 
 

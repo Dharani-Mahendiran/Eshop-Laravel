@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -61,7 +63,17 @@ class DashboardController extends Controller
 
     public function view_user(User $user){
         $user = User::where('id', $user->id)->first();
-        return view('admin.users.admin.view', compact('user'));
+
+        $orders = Order::where('user_id', $user->id)->orderBy('updated_at', 'desc')->get();
+
+        $orderItems = [];
+    
+        foreach ($orders as $order) {
+            $orderItems[$order->id] = OrderItem::where('order_id', $order->id)->get();
+        }
+
+
+        return view('admin.users.admin.view', compact('user','orders','orderItems'));
     }
 
 

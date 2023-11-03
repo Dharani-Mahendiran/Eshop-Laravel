@@ -36,7 +36,11 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone }}</td>
-                                <td></td>
+                                <td>
+                                    <div class="action-wrap">
+                                        <a href="{{ url('admin/user/view/'.$user->id) }}"><i class="mdi mdi-eye menu-icon mr-2 text-primary"></i></a>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
