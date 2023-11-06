@@ -138,8 +138,9 @@
                 <span class='text-success'><b>₹ {{ $grandTotal }}</b></span>
             </p>
 
-            <div class='checkout mt-3'>
-            <button type='button' class='btn btn-success text-light placeOrder' onclick='submitOrder()'>Place Order</button>
+            <div class='checkout mt-3 d-block'>
+                <button type='button' class='btn btn-success text-light placeOrder w-100 mb-3' onclick='submitOrder()'>Place Order | COD</button>
+                <button type='button' class='btn btn-danger text-light razerpay_btn w-100' onclick='razorpay()'>Pay with Razorpay</button>
             </div>
 
             </div>

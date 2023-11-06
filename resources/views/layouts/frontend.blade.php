@@ -48,6 +48,8 @@
     <script src="{{ asset('admin\fontawesome-free\css\all.js') }}"></script>
     {{-- custom js--}}
     <script src="{{ asset('frontend\assets\js\custom.js') }}" ></script>
+        {{-- checkout.js custom --}}
+        <script src="{{ asset('frontend\assets\js\checkout.js') }}" ></script>
 
     {{-- sweet alert cdn --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

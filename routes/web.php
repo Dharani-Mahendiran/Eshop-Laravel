@@ -70,6 +70,7 @@ Route::prefix('/')->group(function(){
         Route::controller(CheckoutController::class)->group(function(){
             Route::get('checkout', 'index');
             Route::POST('place-order', 'placeorder');
+            Route::POST('proceed-to-pay', 'razorpaycheck');
         });
 
         Route::controller(UserController::class)->group(function(){
