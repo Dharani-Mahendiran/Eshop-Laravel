@@ -1,6 +1,9 @@
 // add and decrease quantity
 $(document).ready(function () {
 
+loadcart();
+wishlist();
+
 // add to cart ajax jquery
 $('.addToCartBtn').click(function (e) { 
   e.preventDefault();
@@ -27,6 +30,7 @@ $('.addToCartBtn').click(function (e) {
     },
     success: function (response) {
       swal(response.status);
+      loadcart();
     }
   });
 
@@ -103,6 +107,36 @@ $.ajax({
 
 
 });
+
+
+// badge count
+function loadcart(){
+
+  $.ajax({
+    type: "GET",
+    url: "/loadCartData",
+
+    success: function (response) {
+      $('.cart-count').html('');
+      $('.cart-count').html(response.count);
+      // console.log(response.count);
+    }
+  });
+}
+
+function wishlist(){
+
+  $.ajax({
+    type: "GET",
+    url: "/loadWishlistData",
+
+    success: function (response) {
+      $('.wishlist-count').html('');
+      $('.wishlist-count').html(response.count);
+      // console.log(response.count);
+    }
+  });
+}
 
 
 });
@@ -199,11 +233,12 @@ $('.commonlist, .wishlist').click(function(e) {
       },
       success: function(response) {
           swal(response.status);
-
+          setTimeout(function() {window.location.reload();}, 1000);
           // Update the data-wishlist-state attribute and toggle the icon display
           icon.data('wishlist-state', newWishlistState);
 
           if (newWishlistState === 1) {
+
               icon.addClass('text-danger');
               icon.removeClass('text-grey');
           } else {

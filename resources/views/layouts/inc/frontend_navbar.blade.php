@@ -50,27 +50,39 @@
 
       <div class="d-flex align-items-center">
 
-    <a href="{{ url('cart') }}" class='me-2'>
-      <i class="fa fa-shopping-cart">
-        <span>Cart</span>
-      </i>
-    </a>
+
 
     <a href="{{ url('wishlist') }}" class='me-2'>
       <i class="fa fa-heart">
-        <span>Wishlist</span>
+        <p class='d-inline'>
+          Wishist <span class="badge badge-light bg-danger wishlist-count">0</span>
+        </p>
       </i>
     </a>
 
     <a href="{{ url('cart') }}" class='me-2'>
       <i class="fa fa-bell">
-        <span>Notify</span>
+        <p class='d-inline'>
+          Notify <span class="badge badge-light bg-danger">0</span>
+        </p>
       </i>
     </a>
 
+
     <a href="{{ url('my-orders') }}" class='me-2'>
       <i class="fa fa-shopping-cart">
-        <span>My Order</span>
+        <p class='d-inline'>
+          My Order 
+        </p>
+      </i>
+    </a>
+
+
+    <a href="{{ url('cart') }}" class='me-2'>
+      <i class="fa fa-shopping-cart">
+        <p class='d-inline'>
+          Cart <span class="badge badge-light bg-info cart-count">0</span>
+        </p>
       </i>
     </a>
 

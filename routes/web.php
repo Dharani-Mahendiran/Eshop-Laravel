@@ -54,6 +54,8 @@ Route::prefix('/')->group(function(){
             Route::get('cart', 'viewCart');
             Route::post('delete-cartItem', 'deleteProduct');
             Route::post('update-cart', 'updateCart');
+            Route::get('loadCartData', 'cartCount');
+            
         });
 
 
@@ -61,6 +63,7 @@ Route::prefix('/')->group(function(){
             Route::post('add-to-wishlist', 'addProduct');
             Route::get('wishlist', 'viewWishlist');
             Route::post('delete-wishlist', 'deleteProduct');
+            Route::get('loadWishlistData', 'wishlistCount');
         });
 
 
