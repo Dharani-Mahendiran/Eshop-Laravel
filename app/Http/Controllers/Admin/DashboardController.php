@@ -37,8 +37,8 @@ class DashboardController extends Controller
     public function store_user(Request $request){
 
         $user = new User;
-        $user->name = $request->input('name');
-        $user->lname = $request->input('lname');
+        $user->name = ucfirst($request->input('name'));
+        $user->lname = ucfirst($request->input('lname'));
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
         $user->alt_contact = $request->input('alt_contact');
@@ -89,8 +89,8 @@ class DashboardController extends Controller
 
         $user = User::findOrFail($user);
 
-        $user->name = $request->input('name');
-        $user->lname = $request->input('lname');
+        $user->name = ucfirst($request->input('name'));
+        $user->lname = ucfirst($request->input('lname'));
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
         $user->alt_contact = $request->input('alt_contact');

@@ -41,9 +41,11 @@
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
+                            <div class="col-md-6  d-flex align-items-center" id="show_hide_password">
+                                <input  type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" id="password_field">
+                                <div class="">
+                                    <button onclick="regtogglePassword()" type="button" class="btn btn-default" id="toggle_password_button"><i class="fa fa-eye-slash" aria-hidden="true"></i></button>
+                                </div>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -51,6 +53,8 @@
                                 @enderror
                             </div>
                         </div>
+
+                        
 
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">

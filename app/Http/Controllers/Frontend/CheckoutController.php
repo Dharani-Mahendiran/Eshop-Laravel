@@ -22,15 +22,15 @@ class CheckoutController extends Controller
 
         $order = new Order();
         $order->user_id = Auth::id();
-        $order->name = $request->input('name');
-        $order->lname = $request->input('lname');
+        $order->name = ucfirst($request->input('name'));
+        $order->lname = ucfirst($request->input('lname'));
         $order->email = $request->input('email');
         $order->phone = $request->input('contact');
         $order->alt_contact = $request->input('alt_contact');
-        $order->address = $request->input('address');
-        $order->city = $request->input('city');
-        $order->state = $request->input('state');
-        $order->country = $request->input('country');
+        $order->address = ucwords(strtolower($request->input('address')));
+        $order->city = ucfirst($request->input('city'));
+        $order->state = ucwords(strtolower($request->input('state')));
+        $order->country = ucfirst($request->input('country'));
         $order->pincode = $request->input('pincode');
         // $order->status = $request->input('status');
         // $order->message = $request->input('message');
@@ -59,13 +59,13 @@ class CheckoutController extends Controller
         
         if(Auth::user()->address == NULL){
             $user = User::where('id', Auth::id())->first();
-            $user->lname = $request->input('lname');
+            $user->lname = ucfirst($request->input('lname'));
             $user->phone = $request->input('contact');
             $user->alt_contact = $request->input('alt_contact');
-            $user->address = $request->input('address');
-            $user->city = $request->input('city');
-            $user->state = $request->input('state');
-            $user->country = $request->input('country');
+            $user->address = ucwords(strtolower($request->input('address')));
+            $user->city = ucfirst($request->input('city'));
+            $user->address = ucwords(strtolower($request->input('state')));
+            $user->country = ucfirst($request->input('country'));
             $user->pincode = $request->input('pincode');
             $user->update();
         }

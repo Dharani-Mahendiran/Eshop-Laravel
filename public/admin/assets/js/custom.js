@@ -302,6 +302,19 @@ if (new_password !== ""){
     }
 }  
 
+  // registeration and login Toggle Password
+    function regtogglePassword() {
+      var x = document.getElementById("password_field");
+      var y = document.getElementById("toggle_password_button");
+      if (x.type === "password") {
+          x.type = "text";
+          y.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i>';
+      } else {
+          x.type = "password";
+          y.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i>';
+      }
+  }  
+
 // go back functionality
 function goBack() {
   window.history.back();

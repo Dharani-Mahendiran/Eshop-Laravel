@@ -26,6 +26,20 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="lname" type="text" class="form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') }}" autocomplete="lname" autofocus>
+
+                                @error('lname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
@@ -45,7 +59,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
                             
                             <div class="col-md-6  d-flex align-items-center" id="show_hide_password">
-                                <input  type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password" id="password_field" style='width:100%'>
+                                <input  type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password" id="password_field">
                                 <div class="">
                                     <button onclick="regtogglePassword()" type="button" class="btn btn-default" id="toggle_password_button"><i class="fa fa-eye-slash" aria-hidden="true"></i></button>
                                 </div>
@@ -81,20 +95,3 @@
 
 
 @endsection
-
-
-
-<script>
-    // Toggle Password
-  function regtogglePassword() {
-    var x = document.getElementById("password_field");
-    var y = document.getElementById("toggle_password_button");
-    if (x.type === "password") {
-        x.type = "text";
-        y.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i>';
-    } else {
-        x.type = "password";
-        y.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i>';
-    }
-}  
-</script>
