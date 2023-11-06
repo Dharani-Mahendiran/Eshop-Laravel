@@ -48,11 +48,12 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
 
-      <div class="d-flex align-items-center">
+   
+  <div class="d-flex align-items-center badge-group">
+    @guest
 
-
-
-    <a href="{{ url('wishlist') }}" class='me-2'>
+    @else
+    <a href="{{ url('wishlist') }}">
       <i class="fa fa-heart">
         <p class='d-inline'>
           Wishist <span class="badge badge-light bg-danger wishlist-count">0</span>
@@ -60,31 +61,32 @@
       </i>
     </a>
 
-    <a href="{{ url('cart') }}" class='me-2'>
+    <a href="{{ url('cart') }}">
       <i class="fa fa-bell">
         <p class='d-inline'>
-          Notify <span class="badge badge-light bg-danger">0</span>
+          Notify <span class="badge badge-light bg-warning">0</span>
         </p>
       </i>
     </a>
 
 
-    <a href="{{ url('my-orders') }}" class='me-2'>
-      <i class="fa fa-shopping-cart">
-        <p class='d-inline'>
-          My Order 
-        </p>
-      </i>
-    </a>
-
-
-    <a href="{{ url('cart') }}" class='me-2'>
+    <a href="{{ url('cart') }}">
       <i class="fa fa-shopping-cart">
         <p class='d-inline'>
           Cart <span class="badge badge-light bg-info cart-count">0</span>
         </p>
       </i>
     </a>
+
+    <a href="{{ url('my-orders') }}" class='me-3'>
+      <i class="fa fa-shopping-bag">
+        <p class='d-inline'>
+          My Orders 
+        </p>
+      </i>
+    </a>
+   
+    @endguest
 
       @if (Route::has('login'))
       <div class="d-flex nav-end">

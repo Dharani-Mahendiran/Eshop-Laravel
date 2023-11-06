@@ -822,6 +822,31 @@ display:none;
 
 /* end of mobile view user order status  */
 
+/* count bagdge ui */
+.badge-group p{
+  position:relative;
+}
+.badge-group a{
+    margin-right: 35px;
+}
+.badge-group p span{
+    position: absolute;
+    bottom: 25px;
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.badge-group p span.bg-info{
+    right:55px;
+}
+.badge-group p span.bg-warning{
+    right: 57px;
+}
+.badge-group p span.bg-danger{
+    right: 70px;
+}
+
 /* responsive ui */
 
 @media (max-width:1281.98px){
@@ -876,6 +901,12 @@ display:none;
     }
 
 
+}
+@media (min-width:992px){
+.navbar{
+    height: 75px;
+    align-items: end;
+}
 }
 
 @media (max-width:991.98px){
@@ -960,4 +991,23 @@ display:none;
     .card-body.desk-view{
         display: none;
     }
+
+    .badge-group{
+       flex-wrap: wrap;
+       margin-top: 20px;
+    }
+    .badge-group a{
+       margin-bottom: 10px;
+    }
+    .badge-group .d-flex.nav-end{
+        display: block!important;
+        width: 100%;
+    }
+    .badge-group p span{
+        right: unset!important;
+        bottom: 20px;
+    }
+
 }
+
+
