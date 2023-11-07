@@ -22,9 +22,12 @@ class Order extends Model
         'state',
         'country',
         'pincode',
+        'payment_mode',
+        'payment_id',
         'status',
         'message',
         'tracking_number',
+        
     ];
 
 

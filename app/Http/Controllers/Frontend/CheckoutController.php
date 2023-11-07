@@ -32,6 +32,12 @@ class CheckoutController extends Controller
         $order->state = ucwords(strtolower($request->input('state')));
         $order->country = ucfirst($request->input('country'));
         $order->pincode = $request->input('pincode');
+
+
+        $order->payment_mode = $request->input('payment_mode');
+        $order->payment_id = $request->input('payment_id');
+
+
         // $order->status = $request->input('status');
         // $order->message = $request->input('message');
         
@@ -73,7 +79,11 @@ class CheckoutController extends Controller
         $cartItems = Cart::where('user_id', Auth::id())->get();
         Cart::destroy($cartItems);
 
-        return redirect('/')->with('message', 'Order Placed Successfully');
+        if($request->input('payment_mode') == 'Paid By Razorpay'){
+            return response()->json(['message'=>'Order Placed Successfully']);
+        }
+       
+        return redirect('/my-orders')->with('message', 'Order Placed Successfully');
  
         
     }
@@ -87,5 +97,46 @@ class CheckoutController extends Controller
         }
         return $trackingNumber;
     }
+
+    public function razorpaycheck(Request $request){
+
+        $cart_items = Cart::where('user_id', Auth::id())->get();
+        $total_price = 0; 
+        foreach ($cart_items as $item){
+            $total_price += $item->product_qty * $item->product->selling_price;
+        }
+
+        $name = $request->input('name'); 
+        $lname = $request->input('lname'); 
+        $email = $request->input('email');
+        $contact = $request->input('contact');
+        $alt_contact = $request->input('alt_contact');
+        $address = $request->input('address'); 
+        $city = $request->input('city');
+        $state = $request->input('state'); 
+        $country = $request->input('country'); 
+        $pincode = $request->input('pincode'); 
+
+        return response()->json([
+
+            'name' => $name,
+            'lname' => $lname,
+            'email' => $email,
+            'contact' => $contact,
+            'alt_contact' => $alt_contact,
+            'address' => $address,
+            'city' => $city,
+            'state' => $state,
+            'country' => $country,
+            'pincode' => $pincode,
+            'total_price' => $total_price
+
+        ]);
+    }
+    
+
+
+
+
     
 }

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $('.razerpay_btn').click(function (e) { 
         e.preventDefault();
         
@@ -8,11 +9,9 @@ $(document).ready(function () {
         // Track whether there are validation errors
         let hasError = false;
 
-        // Declaring variables outside the each loop
-        let name, lname, email, contact, alt_contact, address, city, state, country, pincode;
 
         $(".placeOrder").each(function () {
-            name = $(this).find("input[name='name']").val();
+            const name = $("input[name='name']").val();
             if (name === "") {
                 $("#name-error").text("First Name is required");
                 hasError = true;
@@ -109,9 +108,8 @@ $(document).ready(function () {
                 hasError = true;
             }
 
-        });
 
-       
+
         if (hasError) {
             return;
         } else {
@@ -121,6 +119,7 @@ $(document).ready(function () {
                 }
             });
 
+            //  alert(name);
             var data = {
                 'name': name,
                 'lname': lname,
@@ -134,16 +133,84 @@ $(document).ready(function () {
                 'pincode': pincode
             };
 
+
             $.ajax({
                 type: "POST",
                 url: "/proceed-to-pay",
                 data: data,
                 success: function (response) {
-                    // Handle the success response here
+                //   alert(response.name);
+
+                var options = {
+                    "key": "rzp_test_9J5ZaBNiFOACMT", // Enter the Key ID generated from the Dashboard
+                    "amount": response.total_price * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                    "currency": "INR",
+                    "name": response.name+' '+response.lname, //your business name
+                    "description": "Thank you for choosing us",
+                    "image": "https://example.com/your_logo",
+                    // "order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                   
+                    "handler":function(response_a){
+                        // alert(response_a.razorpay_payment_id);
+
+                        // store order after successful payment
+                        $.ajax({
+                            type: "POST",
+                            url: "/place-order",
+                            data: {
+                                'name': response.name,
+                                'lname': response.lname,
+                                'email': response.email,
+                                'contact': response.contact,
+                                'alt_contact': response.alt_contact,
+                                'address': response.address,
+                                'city': response.city,
+                                'state': response.state,
+                                'country': response.country,
+                                'pincode': response.pincode,
+                                'payment_mode': 'Paid By Razorpay',
+                                'payment_id' :response_a.razorpay_payment_id,
+                            },
+                            success: function (response_b) {
+                                // alert(response_b.message);
+                                swal({
+                                    title: "Success",
+                                    text: response_b.message,
+                                    icon: "success",
+                                }).then(function() {
+                                    setTimeout(function() {
+                                        window.location.href = '/my-orders';
+                                    }, 1000);
+                                });
+                            }
+                            
+                            
+                        });
+
+                    },
+                   
+                    "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+                    "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+                        "name": response.name+' '+response.lname, //your customer's name
+                        "email": response.email,
+                        "contact": response.contact //Provide the customer's phone number for better conversion rates 
+                    },
+                    "notes": {
+                        "address": "Razorpay Corporate Office"
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+                var rzp1 = new Razorpay(options);
+                rzp1.open();
+             
+
                 }
             });
 
-            $(".FormCheckout").submit();
+            
         }
+    });
     });
 });

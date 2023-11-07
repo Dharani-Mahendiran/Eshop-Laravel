@@ -139,6 +139,7 @@
             </p>
 
             <div class='checkout mt-3 d-block'>
+                <input type="hidden" name='payment_mode' value='COD'>
                 <button type='button' class='btn btn-success text-light placeOrder w-100 mb-3' onclick='submitOrder()'>Place Order | COD</button>
                 <button type='button' class='btn btn-danger text-light razerpay_btn w-100' onclick='razorpay()'>Pay with Razorpay</button>
             </div>
@@ -154,10 +155,8 @@
 
 </div>
 
+@endsection
 
-
-
-
-
-
+@section('scripts')
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 @endsection
