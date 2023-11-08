@@ -9,8 +9,6 @@ $(document).ready(function () {
         // Track whether there are validation errors
         let hasError = false;
 
-
-        $(".placeOrder").each(function () {
             const name = $("input[name='name']").val();
             if (name === "") {
                 $("#name-error").text("First Name is required");
@@ -174,7 +172,7 @@ $(document).ready(function () {
                             success: function (response_b) {
                                 // alert(response_b.message);
                                 swal({
-                                    title: "Success",
+                                    title: "Payment Successful!",
                                     text: response_b.message,
                                     icon: "success",
                                 }).then(function() {
@@ -211,6 +209,6 @@ $(document).ready(function () {
 
             
         }
-    });
+   
     });
 });
