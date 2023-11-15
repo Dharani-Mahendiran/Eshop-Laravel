@@ -322,7 +322,7 @@ $(document).ready(function () {
 
                 $.ajax({
                     type: "POST",
-                    url: "/proceed-to-pay",
+                    url: "/place-order",
                     data: {
                         'name': name,
                         'lname': lname,
@@ -334,7 +334,7 @@ $(document).ready(function () {
                         'state': state,
                         'country': country,
                         'pincode': pincode,
-                        'payment_mode' : 'Paid by Paypal',
+                        'payment_mode' : 'Paid By Paypal',
                         'payment_id' : details.id,
                     },
                   
