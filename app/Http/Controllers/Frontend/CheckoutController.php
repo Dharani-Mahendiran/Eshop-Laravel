@@ -40,7 +40,7 @@ class CheckoutController extends Controller
 
         // $order->status = $request->input('status');
         // $order->message = $request->input('message');
-        
+
         // Using the generateTrackingNumber function
         $order->tracking_number = $this->generateTrackingNumber();
         $order->save();
@@ -62,7 +62,7 @@ class CheckoutController extends Controller
 
 
         }
-        
+
         if(Auth::user()->address == NULL){
             $user = User::where('id', Auth::id())->first();
             $user->lname = ucfirst($request->input('lname'));
@@ -70,7 +70,8 @@ class CheckoutController extends Controller
             $user->alt_contact = $request->input('alt_contact');
             $user->address = ucwords(strtolower($request->input('address')));
             $user->city = ucfirst($request->input('city'));
-            $user->address = ucwords(strtolower($request->input('state')));
+            $user->state = ucwords(strtolower($request->input('state')));
+            $user->address = ucwords(strtolower($request->input('address')));
             $user->country = ucfirst($request->input('country'));
             $user->pincode = $request->input('pincode');
             $user->update();
@@ -82,12 +83,12 @@ class CheckoutController extends Controller
         if($request->input('payment_mode') == 'Paid By Razorpay' || $request->input('payment_mode') == 'Paid By Paypal'){
             return response()->json(['message'=>'Order Placed Successfully']);
         }
-        
+
         return redirect('/my-orders')->with('message', 'Order Placed Successfully');
- 
-        
+
+
     }
-    
+
     // Function to generate a tracking number
     private function generateTrackingNumber() {
         $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -101,21 +102,21 @@ class CheckoutController extends Controller
     public function razorpaycheck(Request $request){
 
         $cart_items = Cart::where('user_id', Auth::id())->get();
-        $total_price = 0; 
+        $total_price = 0;
         foreach ($cart_items as $item){
             $total_price += $item->product_qty * $item->product->selling_price;
         }
 
-        $name = $request->input('name'); 
-        $lname = $request->input('lname'); 
+        $name = $request->input('name');
+        $lname = $request->input('lname');
         $email = $request->input('email');
         $contact = $request->input('contact');
         $alt_contact = $request->input('alt_contact');
-        $address = $request->input('address'); 
+        $address = $request->input('address');
         $city = $request->input('city');
-        $state = $request->input('state'); 
-        $country = $request->input('country'); 
-        $pincode = $request->input('pincode'); 
+        $state = $request->input('state');
+        $country = $request->input('country');
+        $pincode = $request->input('pincode');
 
         return response()->json([
 
@@ -133,10 +134,10 @@ class CheckoutController extends Controller
 
         ]);
     }
-    
 
 
 
 
-    
+
+
 }

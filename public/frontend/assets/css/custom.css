@@ -333,7 +333,7 @@ outline: none;
 .flip-card {
 background-color: transparent;
 width: 100%;
-height: 320px;
+height: 350px;
 perspective: 1000px; 
 }
 .flip-card img{
@@ -849,6 +849,34 @@ display:none;
 
 /* responsive ui */
 
+
+/* rating */
+.rating-css div {
+    color: #ffe400;
+    font-size: 25px;
+    font-family: sans-serif;
+    font-weight: 800;
+    text-align: left;
+    text-transform: uppercase;
+    padding: 0;
+  }
+  .rating-css input {
+    display: none;
+  }
+  .rating-css input + label {
+    font-size: 25px;
+    text-shadow: 1px 1px 0 #8f8420;
+    cursor: pointer;
+  }
+  .rating-css input:checked + label ~ label {
+    color: #b4afaf;
+  }
+  .rating-css label:active {
+    transform: scale(0.8);
+    transition: 0.3s ease;
+  }
+  
+  /* End of Star Rating */
 @media (max-width:1281.98px){
 
     .product-view .buy-btn, .product-view .cart-btn{

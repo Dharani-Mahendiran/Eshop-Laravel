@@ -40,7 +40,7 @@ class User extends Authenticatable
             'city' =>  '',
             'state' => '',
             'country'=>  '',
-            'pincode' =>  '000000',
+            'pincode' =>  '',
             'has_deleted' => '0',
     ];
 
@@ -71,17 +71,17 @@ class User extends Authenticatable
             $this->two_factor_expires_at = now()->addMinutes(10);
             $this->save();
         }
-    
+
         /*Reset the MFA code generated earlier*/
         public function resetTwoFactorCode()
         {
-            $this->timestamps = false; 
+            $this->timestamps = false;
             $this->two_factor_code = null;
             $this->two_factor_expires_at = null;
             $this->save();
         }
-    
-    
+
+
         public function hasTwoFactorAuthenticationEnabled()
         {
             return !is_null($this->two_factor_code) && now()->lt($this->two_factor_expires_at);
