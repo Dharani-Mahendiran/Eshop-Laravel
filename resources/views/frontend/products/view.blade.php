@@ -23,7 +23,7 @@
     <div class="col-md-8 content">
         <div class='product-box'>
             <h4>{{ $product->name }}</h4>
-           
+
             <h6 class="">
               @if($product->trending == 1)
                 <span class='trending'>Trending</span>
@@ -36,7 +36,7 @@
           @endif
 
             </h6>
-          
+
         </div>
 
 
@@ -45,9 +45,25 @@
             <span class='text-success ms-2'>₹ {{ $product->selling_price }}</span>
         </div>
 
-        <div class="feature-box">
+        <div class="feature-box mb-0">
             <h5> Description About this product:- </h5>
-            <p>{{ $product->description }}</p>
+            <p class='mb-0'>{{ $product->description }}</p>
+        </div>
+
+
+        <div class="rating-css">
+            <div class="star-icon">
+                <input type="radio" value="1" name="product_rating" checked id="rating1">
+                <label for="rating1" class="fa fa-star"></label>
+                <input type="radio" value="2" name="product_rating" id="rating2">
+                <label for="rating2" class="fa fa-star"></label>
+                <input type="radio" value="3" name="product_rating" id="rating3">
+                <label for="rating3" class="fa fa-star"></label>
+                <input type="radio" value="4" name="product_rating" id="rating4">
+                <label for="rating4" class="fa fa-star"></label>
+                <input type="radio" value="5" name="product_rating" id="rating5">
+                <label for="rating5" class="fa fa-star"></label>
+            </div>
         </div>
 
 
@@ -66,7 +82,7 @@
             @else
                 <input type="number" name='quantity' class="qty-input" value="1">
             @endif
-            
+
                 <button class="plus" aria-label="Increase">&plus;</button>
             </div>
 
@@ -75,7 +91,7 @@
                 <i class="fa fa-shopping-cart"></i> Buy Now
             </button>
 
-            
+
             <button class="btn cart-btn addToCartBtn" tabindex="0">
                 <i class="fa fa-shopping-cart"></i> Add To Cart
             </button>
@@ -92,8 +108,8 @@
 
 
     </div>
-                       
-</div>               
+
+</div>
 </div>
 </div>
 
